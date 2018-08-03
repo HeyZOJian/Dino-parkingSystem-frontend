@@ -97,7 +97,7 @@ const ResourceAPi = {
                 successCallBack(response.status);
             })
             .catch(function (error) {
-                console.log(error);
+                successCallBack(error.response.status)
             });
     }
 }

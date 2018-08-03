@@ -31,10 +31,11 @@ export default class OrderManage extends React.Component {
       ];
     
     dispatchOrder(orderId) {
+        this.props.getAllParkingBoys();
         this.setState({
             visible: true,
             orderId: orderId,
-        })
+        });
     }
 
     onCancel() {

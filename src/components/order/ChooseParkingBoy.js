@@ -17,6 +17,7 @@ class ChooseParkingBoy extends React.Component {
         { title: '姓名', dataIndex: 'nickname', key: 'nickname' },
         { title: '停车场数量', dataIndex: 'lotNumber', key: 'lotNumber' },
         { title: '停车数', dataIndex: 'carNumber', key: 'carNumber' },
+        { title: '已接单数', dataIndex: 'orderNumber', key: 'orderNumber' },
         { title: '总车位', dataIndex: 'total', key: 'total' },
         { title: '', key: 'operation', render: (text, record) => (
             <Radio value={record.id} />
@@ -46,15 +47,12 @@ class ChooseParkingBoy extends React.Component {
         })
     }
 
-    componentDidMount() {
-        this.props.getAllParkingBoys();
-    }
     render() {
         return (
             <Modal
                 visible={this.props.visible}
                 title="Create a new collection"
-                onCancel={this.props.onCancel}
+                onCancel={() => {this.setState({value: undefined}) ;this.props.onCancel()}}
                 onOk={() => this.handleSubmit()}
 
             >
