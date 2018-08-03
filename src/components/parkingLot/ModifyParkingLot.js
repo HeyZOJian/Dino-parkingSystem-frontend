@@ -1,13 +1,13 @@
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal, Alert } from 'antd';
 import React from 'react';
-import ResourceAPi from '../../api/ResourceAPI';
+import ResourceAPI from '../../api/ResourceAPI';
 import { Link } from 'react-router-dom'
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-const ModifyEmployee = Form.create()(
+const ModifyParkingLot = Form.create()(
     class extends React.Component {
         state = {
             confirmDirty: false,
@@ -17,7 +17,7 @@ const ModifyEmployee = Form.create()(
         };
 
         getStatusCode(statusCode) {
-            if (statusCode === 204) {
+            if (statusCode === 200) {
                 this.setState({
                     visible: true,
                     context: <Alert message="Success Text" type="success" />,
@@ -34,8 +34,8 @@ const ModifyEmployee = Form.create()(
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if (!err) {
                     console.log('Received values of form: ', values);
-                    console.log(this.props.employeeId);
-                    ResourceAPi.modifyEmployeeInfo({ id: this.props.employeeId, ...values }, (statusCode) => this.getStatusCode(statusCode));
+                    console.log(this.props.parkingLotId);
+                    ResourceAPI.modifyParkingLotInfo({ id: this.props.parkingLotId, ...values }, (statusCode) => this.getStatusCode(statusCode));
                 }
             });
         }
@@ -45,22 +45,22 @@ const ModifyEmployee = Form.create()(
             this.setState({ confirmDirty: this.state.confirmDirty || !!value });
         }
 
-        compareToFirstPassword = (rule, value, callback) => {
-            const form = this.props.form;
-            if (value && value !== form.getFieldValue('password')) {
-                callback('Two passwords that you enter is inconsistent!');
-            } else {
-                callback();
-            }
-        }
+        // compareToFirstPassword = (rule, value, callback) => {
+        //     const form = this.props.form;
+        //     if (value && value !== form.getFieldValue('password')) {
+        //         callback('Two passwords that you enter is inconsistent!');
+        //     } else {
+        //         callback();
+        //     }
+        // }
 
-        validateToNextPassword = (rule, value, callback) => {
-            const form = this.props.form;
-            if (value && this.state.confirmDirty) {
-                form.validateFields(['confirm'], { force: true });
-            }
-            callback();
-        }
+        // validateToNextPassword = (rule, value, callback) => {
+        //     const form = this.props.form;
+        //     if (value && this.state.confirmDirty) {
+        //         form.validateFields(['confirm'], { force: true });
+        //     }
+        //     callback();
+        // }
 
         handleWebsiteChange = (value) => {
             let autoCompleteResult;
@@ -78,7 +78,7 @@ const ModifyEmployee = Form.create()(
         }
 
         handleOk = () => {
-            this.props.getAllEmployees();
+            this.props.getAllParkingLots();
             this.setState({ visible: false });
             this.props.onCancel();
             this.props.form.resetFields();
@@ -98,18 +98,18 @@ const ModifyEmployee = Form.create()(
                     sm: { span: 16 },
                 },
             };
-            const tailFormItemLayout = {
-                wrapperCol: {
-                    xs: {
-                        span: 24,
-                        offset: 0,
-                    },
-                    sm: {
-                        span: 16,
-                        offset: 8,
-                    },
-                },
-            };
+            // const tailFormItemLayout = {
+            //     wrapperCol: {
+            //         xs: {
+            //             span: 24,
+            //             offset: 0,
+            //         },
+            //         sm: {
+            //             span: 16,
+            //             offset: 8,
+            //         },
+            //     },
+            // };
 
             const websiteOptions = autoCompleteResult.map(website => (
                 <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
@@ -117,8 +117,8 @@ const ModifyEmployee = Form.create()(
             return (
                 <Modal
                     visible={this.props.visible}
-                    title="Create a new collection"
-                    okText="Create"
+                    title="Modify the parkingLot"
+                    okText="Modify"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
 
@@ -130,7 +130,7 @@ const ModifyEmployee = Form.create()(
                             onOk={this.handleOk}
                             onCancel={this.handleCancel}
                             footer={[
-                                <Link to='/App/EmployeeManage'>
+                                <Link to='/App/ParkingLotManage'>
                                     <Button key="submit" type="primary" onClick={this.handleOk}>
                                         确定
                             </Button>
@@ -141,36 +141,28 @@ const ModifyEmployee = Form.create()(
                         </Modal>
                         <FormItem
                             {...formItemLayout}
-                            label="姓名"
+                            label="停车场名称"
                         >
-                            {getFieldDecorator('nickname', {
+                            {getFieldDecorator('name', {
                                 rules: [{
-                                    message: 'Please input your E-mail!',
-                                }],
+                                    required: true, message: 'Please input the parkingLot name!',
+                                }
+                                    // , {
+                                    //     validator: this.validateToNextPassword,
+                                    // }
+                                ],
                             })(
                                 <Input />
                             )}
                         </FormItem>
                         <FormItem
                             {...formItemLayout}
-                            label="E-mail"
+                            label="停车场大小"
                         >
-                            {getFieldDecorator('email', {
+                            {getFieldDecorator('size', {
                                 rules: [{
-                                    type: 'email', message: 'The input is not valid E-mail!',
-                                }, {
-                                    message: 'Please input your E-mail!',
+                                    required: true, message: 'Please input the size of the parkingLot!',
                                 }],
-                            })(
-                                <Input />
-                            )}
-                        </FormItem>
-                        <FormItem
-                            {...formItemLayout}
-                            label="电话号码"
-                        >
-                            {getFieldDecorator('phone', {
-                                rules: [{ message: 'Please input your phone number!' }],
                             })(
                                 <Input />
                             )}
@@ -183,4 +175,4 @@ const ModifyEmployee = Form.create()(
 )
 
 
-export default ModifyEmployee;
+export default ModifyParkingLot;

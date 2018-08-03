@@ -1,9 +1,9 @@
 import React from 'react';
-import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete, } from 'antd';
+import { Layout, Input, Select, Button, Table, Divider, Modal, Alert } from 'antd';
 import {Link} from 'react-router-dom'
-import ResourceAPi from '../../api/ResourceAPI';
-import AddEmployee from '../employee/AddEmployee';
-import ModifyEmployee from '../employee/ModifyEmployee';
+import ResourceAPI from '../../api/ResourceAPI';
+import AddParkingLot from '../parkingLot/AddParkingLot';
+import ModifyParkingLot from '../parkingLot/ModifyParkingLot';
 
 const { Content } = Layout;
 const {Search} = Input;
@@ -14,8 +14,8 @@ export default class ParkingLotManage extends React.Component {
     state = {
         addVisible: false,
         modifyVisible: false,
-        employeeId: undefined,
-        context: '',
+        parkingLotId: undefined,
+        context: ''
     };
 
     columns = [
@@ -26,20 +26,20 @@ export default class ParkingLotManage extends React.Component {
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status ? '注销' : '恢复'}</a>
+                <a onClick={() => this.changeParkingLotStatus(record.id, record.status)}>{record.status ? '注销' : '恢复'}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
       ];
 
-    changeEmployeeStatus = (employeeId, employeeStatus) => {
-        employeeStatus = employeeStatus ? false : true;
-        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode) => this.getStatusCode(statusCode))
+    changeParkingLotStatus = (parkingLotId, parkingLotStatus) => {
+        parkingLotStatus = parkingLotStatus ? false : true;
+        ResourceAPI.changeParkingLotStatus(parkingLotId, parkingLotStatus, (statusCode) => this.getStatusCode(statusCode))
     }
 
     getStatusCode(statusCode) {
-        if (statusCode === 204) {
+        if (statusCode === 200) {
             this.setState({
                 statusVisible: true,
                 context: <Alert message="Success Text" type="success" />,
@@ -73,10 +73,10 @@ export default class ParkingLotManage extends React.Component {
         });
     }
 
-    showModifyModal = (employeeId) => {
+    showModifyModal = (parkingLotId) => {
         this.setState({ 
             modifyVisible: true,
-            employeeId: employeeId,
+            parkingLotId: parkingLotId
         });
     }
 
@@ -89,7 +89,7 @@ export default class ParkingLotManage extends React.Component {
     }
 
     handleOk = () => {
-        this.props.getAllEmployees();
+        this.props.getAllParkingLots();
           this.setState({ statusVisible: false });
       }
 
@@ -107,7 +107,7 @@ export default class ParkingLotManage extends React.Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
-                        <Link to='/App/EmployeeManage'>
+                        <Link to='/App/ParkingLotManage'>
                             <Button key="submit" type="primary" onClick={this.handleOk}>
                                 确定
                             </Button>
@@ -116,20 +116,20 @@ export default class ParkingLotManage extends React.Component {
                 >
                     {this.state.context}
                 </Modal>
-                <ModifyEmployee
+                <ModifyParkingLot
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}
                     onCancel={this.handleModifyCancel}
                     onCreate={this.handleCreate}
-                    getAllEmployees={this.props.getAllEmployees}
-                    employeeId={this.state.employeeId}
+                    getAllParkingLots={this.props.getAllParkingLots}
+                    parkingLotId={this.state.parkingLotId}
                 />
-                <AddEmployee
+                <AddParkingLot
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.addVisible}
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
-                    getAllEmployees={this.props.getAllEmployees}
+                    getAllParkingLots={this.props.getAllParkingLots}
                 />
                 <Button type='primary' onClick={this.showModal}>新增</Button>
                 <span style={{float:'right'}}>
