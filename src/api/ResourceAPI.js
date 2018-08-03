@@ -2,8 +2,11 @@ import axios from 'axios';
 
 const ResourceAPi = {
     apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
-
+    // apiUrl:'http://localhost:8081',
     getAllEmployees(successCallBack) {
+        const token = localStorage.getItem("token")
+        console.log("13232121"+token)
+    axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/users`)
             .then(function (response) {

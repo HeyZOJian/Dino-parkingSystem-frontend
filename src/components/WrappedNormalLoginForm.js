@@ -16,7 +16,7 @@ notification.config({
 class Login extends Component {
 
   render() {
-    
+
     const AntWrappedLoginForm = Form.create()(NormalLoginForm)
     return (
 
@@ -47,7 +47,7 @@ const openNotification = () => {
 };
 
 class NormalLoginForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -61,20 +61,17 @@ class NormalLoginForm extends React.Component {
         if (!err) {
           //  console.log('Received values of form: ', values);
           axios.post("https://dino-parking-system-backend.herokuapp.com/login", {
+            //  axios.post("http://localhost:8081/login", {
             "username": values.userName,
             "password": values.password
           }).then(function (response) {
             console.log(response.headers.authorization)
-            console.log("hahaha")
             const token = response.headers.authorization
             sessionStorage.setItem("token", token);
-            localStorage.setItem("nickname",'admin')
-            localStorage.setItem("status",'1')
-            
-            //  history.push("/EmployeeManage");
-            window.location.href="/App/EmployeeManage";
-            //return (<Redirect to="/EmployeeManage" />);
-           // this.props.history.push('/EmployeeManage')
+            localStorage.setItem("token", token);
+            localStorage.setItem("nickname", 'admin')
+            localStorage.setItem("status", '1')
+            window.location.href = "/App/EmployeeManage";
           }).catch(function (error) {
             console.log(error)
             openNotification();
