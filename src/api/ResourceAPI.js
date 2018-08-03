@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const ResourceAPi = {
-    // apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
-    apiUrl:'http://localhost:8081',
+     apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
+//    apiUrl:'http://localhost:8081',
     getAllEmployees(successCallBack) {
         const token = localStorage.getItem("token")
         axios.defaults.headers.common['Authorization'] = token;
