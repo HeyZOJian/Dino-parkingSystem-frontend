@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import  ParkingLotManage  from "./containers/ParkingLotManageContainer";
 import  ParkingBoyManage  from "./components/parkingBoy/ParkingBoyManage";
 import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
-import  OrderManage  from "./components/order/OrderManage";
+import  OrderManage  from "./containers/OrderManageContainer";
 import  MyFooter  from "./components/MyFooter";
 import EmployeeManage from './containers/EmployeeManageContainer';
 import WrappedAddEmployee from './components/employee/AddEmployee';

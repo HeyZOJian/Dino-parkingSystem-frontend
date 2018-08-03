@@ -16,7 +16,6 @@ notification.config({
 class Login extends Component {
 
   render() {
-
     const AntWrappedLoginForm = Form.create()(NormalLoginForm)
     return (
 
