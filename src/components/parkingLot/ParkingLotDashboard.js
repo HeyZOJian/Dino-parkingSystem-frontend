@@ -35,7 +35,7 @@ class ParkingLotDashboard extends React.Component {
                         format={() => `${item.carNum}/${item.size}`}
                         percent={(item.carNum / item.size) * 100}/>
                     </Col>
-                    <Col span={12} style={{fontSize:18,marginTop:50}}>停车员:{item.parkingBoyName}</Col>
+                    <Col span={12} style={{fontSize:18,marginTop:50}}>停车员:{item.parkingBoyName==null?'无':item.parkingBoyName}</Col>
                     </Row>
                     <Col offset={1} style={{marginLeft:30}}>停车情况</Col>
                   </Card>
