@@ -99,6 +99,28 @@ const ResourceAPi = {
             .catch(function (error) {
                 successCallBack(error.response.status)
             });
+    },
+
+    getNoManagedParkingLots(successCallBack) {
+        axios
+            .get(`${this.apiUrl}/parkingLots/?noParkingBoy=true`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },
+
+    getParkingLotsByParkingBoyId(id, successCallBack) {
+        axios
+            .get(`${this.apiUrl}/parkingBoys/${id}/parkingLots`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 }
 

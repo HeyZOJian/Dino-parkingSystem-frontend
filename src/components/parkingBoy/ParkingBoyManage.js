@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete, } from 'antd';
+import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete,Transfer } from 'antd';
 import {Link} from 'react-router-dom'
 import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from '../employee/AddEmployee';
@@ -14,6 +14,8 @@ export default class ParkingBoyManage extends React.Component {
     state = {
         visible: false,
         orderId: undefined,
+        mockData: [],
+        targetKeys: [],
     };
 
     columns = [
@@ -32,8 +34,64 @@ export default class ParkingBoyManage extends React.Component {
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
     ];
 
+    filterOption = (inputValue, option) => {
+        return option.description.indexOf(inputValue) > -1;
+    }
+
+    getManagedParkingLot(response) {
+        return response.data;
+    }
+
+    handleChange = (targetKeys) => {
+        this.setState({ targetKeys });
+      }
+    
+    
+      getMock = () => {
+        const targetKeys = [];
+        const mockData = [];
+        for (let i = 0; i < 20; i++) {
+          const data = {
+            key: i.toString(),
+            title: `content${i + 1}`,
+            description: `description of content${i + 1}`,
+            chosen: Math.random() * 2 > 1,
+          };
+          if (data.chosen) {
+            targetKeys.push(data.key);
+          }
+          mockData.push(data);
+        }
+        this.setState({ mockData, targetKeys });
+      }
+
+    expandedRowRender(record) {
+        const {parkingLots} = this.props;
+            if (parkingLots.filter(parkingLot => parkingLot.id === record.id).length === 0) {
+                this.props.getParkingLotsByParkingBoyId(record.id);
+            }
+        console.log(parkingLots)
+        let noManagedParkingLots = parkingLots[0];
+        let managedParkingLots = parkingLots.filter(parkingLot => parkingLot.id === record.id)[0].parkingLots;
+        
+        return (
+            <Transfer
+                rowKey={record => record.id}
+                titles={['可选停车场', '管理的停车场']}
+                dataSource={[...noManagedParkingLots, ...managedParkingLots]}
+                showSearch
+                filterOption={this.filterOption}
+                targetKeys={managedParkingLots.map(parkingLot => parkingLot.id)}
+                onChange={this.handleChange}
+                render={item => item.name}
+            />
+        )
+    }
+
     componentDidMount() {
         this.props.getAllParkingBoys();
+        this.props.getNoManagedParkingLots();
+        // this.props.getParkingLotsByParkingBoyId(2);
     }
 
     render() {
@@ -55,8 +113,9 @@ export default class ParkingBoyManage extends React.Component {
                 />
                 </span>
                 <Table
+                    rowKey='id'
                     columns={this.columns}
-                    expandedRowRender={record => <p style={{ margin: 0 }}>穿梭框</p>}
+                    expandedRowRender={record => this.expandedRowRender(record)}
                     dataSource={parkingBoys}
                 />
             </Content>

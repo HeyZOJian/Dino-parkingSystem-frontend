@@ -6,6 +6,7 @@ export default (state = [], action) => {
           console.log(action.parkingLots);
         return action.parkingLots;
       }
+      
       default:
         return state;
     }

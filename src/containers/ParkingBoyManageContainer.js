@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import ParkingBoyManage from "../components/parkingBoy/ParkingBoyManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllParkingBoys} from '../actions';
+import {getAllParkingBoys, getNoManagedParkingLots, getParkingLotsByParkingBoyId} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        parkingBoys: state.parkingboys
+        parkingBoys: state.parkingboys,
+        parkingLots: state.manageparkinglots,
     };
   };
   
@@ -14,6 +15,14 @@ const mapStateToProps = (state, ownProps) => {
         getAllParkingBoys: () => {
             ResourceAPi.getAllParkingBoys(parkingBoys => dispatch(getAllParkingBoys(parkingBoys)));
         },
+        getNoManagedParkingLots: () => {
+            ResourceAPi.getNoManagedParkingLots(parkingLots => dispatch(getNoManagedParkingLots(parkingLots)));
+        },
+        getParkingLotsByParkingBoyId: (id) => {
+            ResourceAPi.getParkingLotsByParkingBoyId(id, (parkingLots) => {
+                dispatch(getParkingLotsByParkingBoyId({id, parkingLots}));
+            })
+        }
     }
   };
 
