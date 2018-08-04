@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import ParkingBoyManage from "../components/parkingBoy/ParkingBoyManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllParkingBoys, getNoManagedParkingLots, getParkingLotsByParkingBoyId} from '../actions';
+import {getAllParkingBoys, getNoManagedParkingLots, getParkingLotsByParkingBoyId, getAllParkingLots} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
         parkingBoys: state.parkingboys,
-        parkingLots: state.manageparkinglots,
+        managedParkingLots: state.managedparkinglots,
+        parkingLots: state.parkinglots,
     };
   };
   
@@ -16,11 +17,12 @@ const mapStateToProps = (state, ownProps) => {
             ResourceAPi.getAllParkingBoys(parkingBoys => dispatch(getAllParkingBoys(parkingBoys)));
         },
         getNoManagedParkingLots: () => {
-            ResourceAPi.getNoManagedParkingLots(parkingLots => dispatch(getNoManagedParkingLots(parkingLots)));
+            ResourceAPi.getNoManagedParkingLots(parkingLots => dispatch(getAllParkingLots(parkingLots)));
         },
-        getParkingLotsByParkingBoyId: (id) => {
+        getParkingLotsByParkingBoyId: (id, setState) => {
             ResourceAPi.getParkingLotsByParkingBoyId(id, (parkingLots) => {
-                dispatch(getParkingLotsByParkingBoyId({id, parkingLots}));
+                dispatch(getParkingLotsByParkingBoyId(parkingLots));
+                setState();
             })
         }
     }

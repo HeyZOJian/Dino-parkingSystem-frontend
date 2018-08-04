@@ -6,10 +6,11 @@ export default (state = [], action) => {
             return state;
         }
         case 'GET_PARKINGLOTS_BY_PARKINGBOY_ID': {
+            // console.log(action.parkingLots);
+            // state.push(action.parkingLots);
+            // console.log(state);
             console.log(action.parkingLots);
-            state.push(action.parkingLots);
-            console.log(state);
-            return state;
+            return action.parkingLots;
         }
 
         default:
