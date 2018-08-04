@@ -16,6 +16,7 @@ class ParkingLotDashboard extends React.Component {
       .load();
   }
 
+  
   render() {
     return (
       <Content style={{padding: '0 24px',minHeight: 280}}>
