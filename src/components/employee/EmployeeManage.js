@@ -60,6 +60,9 @@ export default class EmployeeManage extends React.Component {
         this.setState({ addVisible: true });
     }
 
+    handleCancel = () => {
+        this.setState({ addVisible: false });
+    }
 
     handleCreate = () => {
         const form = this.formRef.props.form;
@@ -88,15 +91,30 @@ export default class EmployeeManage extends React.Component {
         this.formRef = formRef;
     }
 
-
     componentDidMount() {
         this.props.getAllEmployees();
     }
+
     render() {
         const {employees} = this.props;
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
+                <Modal
+                    visible={this.state.statusVisible}
+                    title="Title"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Link to='/App/EmployeeManage'>
+                            <Button key="submit" type="primary" onClick={this.handleOk}>
+                                确定
+                            </Button>
+                        </Link>,
+                    ]}
+                >
+                    {this.state.context}
+                </Modal>
                 <ModifyEmployee
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}
