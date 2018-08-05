@@ -30,12 +30,12 @@ class ParkingLotDashboard extends React.Component {
                   <Card title={item.parkingLotName} style={{margin:"10px"}}>
                   <Row>
                     <Col span={12} >
-                      <Progress 
+                      <Progress xl={6} lg={12}
                         type="dashboard"
                         format={() => `${item.carNum}/${item.size}`}
                         percent={(item.carNum / item.size) * 100}/>
                     </Col>
-                    <Col span={12}>停车员:{item.parkingBoyName}</Col>
+                    <Col span={12} style={{fontSize:18,marginTop:50}}>停车员:{item.parkingBoyName==null?'无':item.parkingBoyName}</Col>
                     </Row>
                     <Col offset={1} style={{marginLeft:30}}>停车情况</Col>
                   </Card>
