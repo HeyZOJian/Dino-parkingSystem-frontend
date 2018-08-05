@@ -1,13 +1,13 @@
 // const axios = require('axios');
 import axios from "axios";
+import * as url from '../constant/constant'
 
 const ParkingLotBashBoardAPI = {
   initServerData(dispatch, action) {
     this.getServerData(dispatch, action);
   },
   getServerData(dispatch, action) {
-    // let getDataUrl = 'https://dino-parking-system-backend.herokuapp.com/parkingLots/dashboard';
-    let getDataUrl ='http://localhost:8081/parkingLots/dashboard';
+    let getDataUrl =url.URL+'/parkingLots/dashboard';
     axios
       .get(getDataUrl)
       .then((response) => {
