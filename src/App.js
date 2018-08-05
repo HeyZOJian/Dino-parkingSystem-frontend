@@ -42,13 +42,30 @@ console.log(1)
             <Layout style={{ padding: '24px 0', background: '#fff' }}>
      
               <MySider />
-
+              
+            {localStorage.getItem("role")==="ROLE_ADMIN"? 
               <Route exact path="/App/EmployeeManage" component={EmployeeManage}></Route>
+            :<Route />}
+
+            {localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_MANAGER" ?
               <Route  path="/App/ParkingLotManage" component={ParkingLotManage}></Route> 
+            :<Route />}  
+
+            {localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_MANAGER" ? 
               <Route  path="/App/ParkingBoyManage" component={ParkingBoyManage}></Route>
+            :<Route />} 
+
+            {localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_MANAGER" ?
               <Route  path="/App/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
-              <Route  path="/App/OrderManage" component={OrderManage}></Route>    
+            :<Route />} 
+
+            {localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_MANAGER" ? 
+              <Route  path="/App/OrderManage" component={OrderManage}></Route>   
+            :<Route />} 
+
+            {localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_MANAGER" ? 
               <Route path="/App/AddEmployee" component={WrappedAddEmployee}></Route>
+            :<Route />} 
 
             </Layout>
           </Content>
