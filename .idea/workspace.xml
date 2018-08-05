@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97029c17-ef86-4049-9c2a-6ef594e5ecee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ResourceAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ResourceAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/employee/AddEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/employee/AddEmployee.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +12,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="ResourceAPI.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/ResourceAPI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="163" column="32" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifyParkingLot.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,6 +76,7 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/WrappedNormalLoginForm.js" />
         <option value="$PROJECT_DIR$/src/api/ResourceAPI.js" />
+        <option value="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" />
       </list>
     </option>
   </component>
@@ -240,6 +257,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -249,13 +267,13 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.30194804" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.482684" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.28246754" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.5" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.12846482" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -359,9 +377,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parkingLot/AddParkingLot.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ParkingLotDashboard.js">
@@ -583,13 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ResourceAPI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="159" column="5" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/constant/constant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -599,6 +607,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/ParkingLotDashboardAPI.js">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/ResourceAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="163" column="32" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

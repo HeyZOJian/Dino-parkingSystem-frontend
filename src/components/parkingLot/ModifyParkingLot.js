@@ -67,10 +67,6 @@ const ModifyParkingLot = Form.create()(
             this.props.form.resetFields();
         }
 
-        onChangeName = (e) => {
-            this.setState({ user: e.target.value });
-        }
-
         render() {
             const { getFieldDecorator } = this.props.form;
             const { autoCompleteResult } = this.state;
