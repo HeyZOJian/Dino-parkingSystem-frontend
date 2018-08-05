@@ -126,7 +126,7 @@ export default class ParkingBoyManage extends React.Component {
                     {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'nickname'>姓名</Option>
                     <Option value = 'phone'>电话</Option>
-                    <Option value = 'status'>状态</Option>
+                    <Option value = 'workStatus'>状态</Option>
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
