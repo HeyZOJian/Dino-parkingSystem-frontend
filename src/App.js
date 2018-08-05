@@ -16,12 +16,6 @@ const {Content,Header} = Layout;
 
 class App extends Component {
 
-a=()=>{
-console.log(1)
-}
-  
-
-
   render() {
     return (
       <div>
@@ -32,7 +26,7 @@ console.log(1)
               <Col span={14}></Col>
               <Col span={9} style={{textAlign:"right"  }}>
              
-              &nbsp;&nbsp;<span style={{  color: 'white' }}>Admin，欢迎您</span>
+              &nbsp;&nbsp;<span style={{  color: 'white' }}>{localStorage.getItem("username")}，欢迎您</span>
               <Avatar style={{  backgroundColor: '#1890ff',marginLeft: 13,marginTop:-4,fontSize:16}} icon="logout" onClick={()=>{localStorage.clear("nikname");window.location.href="../"}}/>
               </Col>     
             </Row>      

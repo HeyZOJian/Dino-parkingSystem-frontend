@@ -66,11 +66,20 @@ class NormalLoginForm extends React.Component {
           }).then(function (response) {
             console.log(response.headers.authorization)
             const token = response.headers.authorization
-            sessionStorage.setItem("token", token);
+            const cookies = JSON.parse(response.headers.cookies)
             localStorage.setItem("token", token);
-            localStorage.setItem("nickname", 'admin')
-            localStorage.setItem("status", '1')
-            window.location.href = "/App/EmployeeManage";
+            localStorage.setItem("id", cookies.id);
+            localStorage.setItem("role", cookies.role);
+            localStorage.setItem("username", values.userName)
+            // localStorage.setItem("status", '1')
+            if(cookies.role == "ROLE_ADMIN"){
+              window.location.href = "/App/EmployeeMasnage";
+            }else if(cookies.role == "ROLE_MANAGER"){
+              window.location.href = "/App/ParkingLotManage";
+            }else{
+              window.location.href = "/App";
+            }
+            
           }).catch(function (error) {
             console.log(error)
             openNotification();
