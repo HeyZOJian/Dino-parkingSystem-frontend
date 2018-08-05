@@ -18,7 +18,7 @@ const AddEmployee = Form.create()(
 
     getStatusCode(statusCode,passwd) {
         if (statusCode === 201) {
-            const message = "创建成功，密码为"+passwd;
+            const message = "创建成功，密码为:"+passwd;
             this.setState({
                 visible: true,
                 context: <Alert message={message} type="success" />,

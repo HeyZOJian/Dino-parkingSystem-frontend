@@ -18,6 +18,9 @@ const mapStateToProps = (state, ownProps) => {
         getAllParkingBoys: () => {
             ResourceAPi.getAllParkingBoys(parkingBoys => dispatch(getAllParkingBoys(parkingBoys)));
         },
+        getActiveParkingBoys: () => {
+            ResourceAPi.getActiveParkingBoys(parkingBoys => dispatch(getAllParkingBoys(parkingBoys)));
+        },
         dispatchOrderSuccess: (id) => dispatch(dispatchOrderSuccess(id)),
     }
   };

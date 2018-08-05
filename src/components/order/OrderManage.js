@@ -31,7 +31,7 @@ export default class OrderManage extends React.Component {
       ];
     
     dispatchOrder(orderId) {
-        this.props.getAllParkingBoys();
+        this.props.getActiveParkingBoys();
         this.setState({
             visible: true,
             orderId: orderId,
