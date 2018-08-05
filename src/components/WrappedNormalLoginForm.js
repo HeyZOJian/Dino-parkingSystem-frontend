@@ -114,13 +114,13 @@ class NormalLoginForm extends React.Component {
             )}
           </FormItem>
           <FormItem>
-            {getFieldDecorator('remember', {
+            {/* {getFieldDecorator('remember', {
               valuePropName: 'checked',
               initialValue: true
             })(
               <Checkbox>Remember me</Checkbox>
             )}
-            <a className="login-form-forgot" href="">Forgot password</a>
+            <a className="login-form-forgot" href="">Forgot password</a> */}
             <Button type="primary" htmlType="submit" className="login-form-button" >
               Login
           </Button>
