@@ -23,7 +23,7 @@ const ParkingLotBashBoardAPI = {
       })
       .catch(function (error) {
         if(error.response.status=='403'){
-          window.location.href = "/";
+          // window.location.href = "/";
       }
       })
       .then(function () {});

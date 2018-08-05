@@ -88,7 +88,8 @@ class NormalLoginForm extends React.Component {
             }else if(cookies.role == "ROLE_MANAGER"){
               window.location.href = "/App/ParkingLotManage";
             }else{
-              window.location.href = "/App";
+              alert("停车员不能登录")
+              // window.location.href = "/App";
             }
             
           }).catch(function (error) {
