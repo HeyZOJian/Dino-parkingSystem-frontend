@@ -32,6 +32,7 @@ export default class EmployeeManage extends React.Component {
         { title: '姓名', dataIndex: 'nickname', key: 'nickname' },
         { title: 'E-mail', dataIndex: 'email', key: 'email' },
         { title: '电话号码', dataIndex: 'phone', key: 'phone' },
+        { title: '权限', dataIndex: 'position', key: 'position' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
@@ -107,9 +108,9 @@ export default class EmployeeManage extends React.Component {
         this.formRef = formRef;
     }
 
-    componentDidMount() {
-        this.props.getAllEmployees();
-    }
+    // componentDidMount() {
+    //     this.props.getAllEmployees();
+    // }
 
     render() {
         const {employees} = this.props;

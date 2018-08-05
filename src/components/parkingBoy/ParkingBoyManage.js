@@ -109,7 +109,7 @@ export default class ParkingBoyManage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getAllParkingBoys();
+        // this.props.getAllParkingBoys();
         this.props.getNoManagedParkingLots();
     }
 

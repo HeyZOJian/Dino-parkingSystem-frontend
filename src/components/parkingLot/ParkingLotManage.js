@@ -84,9 +84,16 @@ export default class ParkingLotManage extends React.Component {
         this.formRef = formRef;
     }
 
-    componentDidMount() {
-        this.props.getAllParkingLots();
+      handleOptionvalue = (value) =>{
+        
+        console.log(value);
+        this.setState({optionValue:value})
+        
     }
+
+    // componentDidMount() {
+    //     this.props.getAllParkingLots();
+    // }
     
     render() {
         const {parkingLots} = this.props;
