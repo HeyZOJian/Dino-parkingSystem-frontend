@@ -27,7 +27,7 @@ export default (state = [], action) => {
       case 'DISPATCH_ORDER_SUCCESS': {
           return [...state].map(i => {
               if (i.id === action.id) {
-                  i.status = 'waitPark';
+                  i.status = '正在停车';
               }
               return i;
           })

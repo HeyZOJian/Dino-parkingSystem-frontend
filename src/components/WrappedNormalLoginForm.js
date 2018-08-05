@@ -35,13 +35,24 @@ class Login extends Component {
 
 const openNotification = () => {
   notification['error']({
-    message: 'Wrong userName or password',
+    message: '错误的用户名或密码',
     duration: 1,
     //description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
     // icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
     style: {
       width: 350,
-      marginLeft: 0 - 725,
+      marginLeft: 0 - 640,
+    },
+  });
+};
+
+const openfailedNotification = () => {
+  notification['error']({
+    message: '您已被冻结，请联系相应管理员',
+    duration: 3,
+    style: {
+      width: 350,
+      marginLeft: 0 - 640,
     },
   });
 };
@@ -81,8 +92,13 @@ class NormalLoginForm extends React.Component {
             }
             
           }).catch(function (error) {
-            console.log(error)
-            openNotification();
+            // console.log(JSON.parse(error.response.headers.cookies).status)
+            if(error.response.headers.cookies!==undefined&&!JSON.parse(error.response.headers.cookies).status){
+              openfailedNotification();
+            }else{
+              openNotification();
+            }
+
           })
         }
       });

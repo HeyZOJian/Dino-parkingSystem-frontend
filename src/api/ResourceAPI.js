@@ -13,6 +13,7 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                window.location.href = "/";
                 console.log(error);
             });
     },
@@ -22,9 +23,13 @@ const ResourceAPi = {
             post(`${this.apiUrl}/users`, employee)
             .then(function (response) {
                 console.log(response.data)
-                successCallBack(response.status,response.data);
+                successCallBack(response.status,response.data.password);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
+                
                 console.log(error);
             })
     },
@@ -36,6 +41,7 @@ const ResourceAPi = {
                 successCallBack(response.status);
             })
             .catch(function (error) {
+                successCallBack(error.response.status);
                 console.log(error);
             })
     },
@@ -67,6 +73,10 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                console.log(error.response.status);
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
     },
@@ -80,6 +90,9 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
     },
@@ -93,6 +106,25 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
+                console.log(error);
+            });
+    },
+
+    getActiveParkingBoys(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
+        axios
+            .get(`${this.apiUrl}/parkingBoys?canAppoint=true`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
     },
@@ -118,6 +150,9 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
     },
@@ -129,6 +164,9 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
     },
@@ -140,6 +178,9 @@ const ResourceAPi = {
                 successCallBack(response.status);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             })
     },
@@ -151,6 +192,9 @@ const ResourceAPi = {
                 successCallBack(response.status);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             })
     },
@@ -165,6 +209,9 @@ const ResourceAPi = {
                 successCallBack(response.status);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             })
     },
@@ -176,6 +223,9 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
 
@@ -188,6 +238,9 @@ const ResourceAPi = {
                 successCallBack(response.data);
             })
             .catch(function (error) {
+                if(error.response.status=='403'){
+                    window.location.href = "/";
+                }
                 console.log(error);
             });
 
@@ -200,6 +253,9 @@ const ResourceAPi = {
                     successCallBack(response.data);
                 })
                 .catch(function (error) {
+                    if(error.response.status=='403'){
+                        window.location.href = "/";
+                    }
                     console.log(error);
                 });
     
@@ -214,6 +270,9 @@ const ResourceAPi = {
                         successCallBack(response.data);
                     })
                     .catch(function (error) {
+                        if(error.response.status=='403'){
+                            window.location.href = "/";
+                        }
                         console.log(error);
                     });
         
