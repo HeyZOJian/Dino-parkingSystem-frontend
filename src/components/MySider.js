@@ -6,13 +6,16 @@ const { Sider } = Layout;
 export default class MySider extends React.Component {
     componentDidMount() {
         const url = window.location.href.split('/');
+        console.log((url[url.length-1]))
         this.props.setSiderStatus(url[url.length-1]);
+        
     }
     setSiderStatus(status) {
         this.props.setSiderStatus(status);
     }
     render() {
         const status = this.props.status;
+        console.log(status)
         return (
             
             <Sider width={200} style={{ background: '#fff' }}>
@@ -67,7 +70,7 @@ export default class MySider extends React.Component {
                         </Link>
                     </Menu.Item>
                 :<div />}
-                
+
                 </Menu>
 
                                     

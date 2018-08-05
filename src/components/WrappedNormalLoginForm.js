@@ -73,7 +73,7 @@ class NormalLoginForm extends React.Component {
             localStorage.setItem("username", values.userName)
             // localStorage.setItem("status", '1')
             if(cookies.role == "ROLE_ADMIN"){
-              window.location.href = "/App/EmployeeMasnage";
+              window.location.href = "/App/EmployeeManage";
             }else if(cookies.role == "ROLE_MANAGER"){
               window.location.href = "/App/ParkingLotManage";
             }else{
