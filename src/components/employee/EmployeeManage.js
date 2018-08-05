@@ -24,6 +24,7 @@ export default class EmployeeManage extends React.Component {
         employeeId: undefined,
         optionValue:'',
         context: '',
+        employeePosition: '',
     };
 
     columns = [
@@ -32,10 +33,10 @@ export default class EmployeeManage extends React.Component {
         { title: '姓名', dataIndex: 'nickname', key: 'nickname' },
         { title: 'E-mail', dataIndex: 'email', key: 'email' },
         { title: '电话号码', dataIndex: 'phone', key: 'phone' },
-        { title: '权限', dataIndex: 'position', key: 'position' },
+        { title: '职位', dataIndex: 'position', key: 'position' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
-                <a onClick={() => this.showModifyModal(record.id)}>修改</a>
+                <a onClick={() => this.showModifyModal(record.id, record.position)}>修改</a>
                 <Divider type='vertical' />
                 <a onClick={() => this.updateEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
@@ -93,10 +94,11 @@ export default class EmployeeManage extends React.Component {
         });
     }
 
-    showModifyModal = (employeeId) => {
+    showModifyModal = (employeeId, employeePosition) => {
         this.setState({ 
             modifyVisible: true,
             employeeId: employeeId,
+            employeePosition: employeePosition,
         });
     }
 
@@ -139,6 +141,7 @@ export default class EmployeeManage extends React.Component {
                     onCreate={this.handleCreate}
                     getAllEmployees={this.props.getAllEmployees}
                     employeeId={this.state.employeeId}
+                    employeePosition={this.state.employeePosition}
                 />
                 <AddEmployee
                     wrappedComponentRef={this.saveFormRef}

@@ -14,6 +14,7 @@ const ModifyEmployee = Form.create()(
             autoCompleteResult: [],
             visible: false,
             context: '',
+            position: '',
         };
 
         getStatusCode(statusCode) {
@@ -33,9 +34,9 @@ const ModifyEmployee = Form.create()(
             e.preventDefault();
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if (!err) {
-                    console.log('Received values of form: ', values);
+                    console.log('Received values of form: ', {...values, position: this.state.position});
                     console.log(this.props.employeeId);
-                    ResourceAPi.modifyEmployeeInfo({ id: this.props.employeeId, ...values }, (statusCode) => this.getStatusCode(statusCode));
+                    ResourceAPi.modifyEmployeeInfo({ id: this.props.employeeId, ...{...values, position: this.state.position} }, (statusCode) => this.getStatusCode(statusCode));
                 }
             });
         }
@@ -84,6 +85,12 @@ const ModifyEmployee = Form.create()(
             this.props.form.resetFields();
         }
 
+        handleChange (value) {
+            this.setState({
+                position: value
+            })
+        }
+
         render() {
             const { getFieldDecorator } = this.props.form;
             const { autoCompleteResult } = this.state;
@@ -114,6 +121,7 @@ const ModifyEmployee = Form.create()(
             const websiteOptions = autoCompleteResult.map(website => (
                 <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
             ));
+            console.log(this.props.employeePosition)
             return (
                 <Modal
                     visible={this.props.visible}
@@ -175,6 +183,18 @@ const ModifyEmployee = Form.create()(
                                 <Input />
                             )}
                         </FormItem>
+                        {this.props.employeePosition != '管理员' ? (
+                        <FormItem
+                            {...formItemLayout}
+                            label="职位"
+                        >
+                                <Select style={{ width: 315 }} onChange={(value) => this.handleChange(value)}>
+                                    <Option disabled={this.props.employeePosition === '停车员'} value="ROLE_PARKINGBOY">停车员</Option>
+                                    <Option disabled={this.props.employeePosition === '经理'} value="ROLE_MANAGER">经理</Option>
+                                </Select>
+                        </FormItem>)
+                        : (<FormItem />)
+                        }
                     </Form>
                 </Modal>
             );

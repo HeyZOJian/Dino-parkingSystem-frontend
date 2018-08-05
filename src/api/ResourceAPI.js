@@ -54,7 +54,6 @@ const ResourceAPi = {
                 message.success('操作成功！');
             })
             .catch(function (error) {
-                successCallBack();
                 message.error(`操作失败！ 原因：${error.response.status, error.response.data.cause}`);
             })
     },
