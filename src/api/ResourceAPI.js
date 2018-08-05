@@ -45,13 +45,15 @@ const ResourceAPi = {
             method: 'patch',
             url: `${this.apiUrl}/users/${employeeId}`,
             headers: { 'content-type': 'application/json' },
-            data: employeeStatus
+            data: {
+                status: employeeStatus
+            }
         })
             .then(function (response) {
                 successCallBack(response.status);
             })
             .catch(function (error) {
-                console.log(error);
+                successCallBack(error.response.status, error.response.data.cause);
             })
     },
 
@@ -145,7 +147,7 @@ const ResourceAPi = {
                 console.log(error);
             })
     },
-    
+
     changeParkingLotStatus(parkingLotId, parkingLotStatus, successCallBack) {
         axios({
             method: 'patch',

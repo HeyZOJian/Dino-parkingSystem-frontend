@@ -11,3 +11,4 @@ export const getSearchEmployees = (employees) => ({type: 'GET_SEARCH_EMPLOYEES',
 export const getSearchParkingLots = (parkingLots) => ({type: 'GET_SEARCH_PARKINGLOTS', parkingLots})
 export const updateManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
 export const updateNoManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_NO_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
+export const updateEmployeeStatus = (id) => ({type: 'UPDATE_EMPLOYEE_STATUS', id})
