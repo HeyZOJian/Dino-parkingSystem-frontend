@@ -131,8 +131,8 @@ export default class ParkingBoyManage extends React.Component {
            
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
             {/* <Button type='primary'  onClick={this.showModal}></Button> */}
-                <span style={{float:'right'}}>
-                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
+                <span style={{float:'right',marginBottom: 10}}>
+                <Select style={{width: 100,marginRight: 5}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'all'>全部</Option>
                     <Option value = 'nickname'>姓名</Option>

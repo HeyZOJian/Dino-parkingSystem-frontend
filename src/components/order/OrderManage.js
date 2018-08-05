@@ -65,8 +65,8 @@ export default class OrderManage extends React.Component {
                     parkingBoys={this.props.parkingBoys}
                     dispatchOrderSuccess={this.props.dispatchOrderSuccess}
                 />
-                <span style={{float:'right'}}>
-                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
+                <span style={{float:'right',marginBottom: 10}}>
+                <Select style={{width: 100,marginRight: 5}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'all'>全部</Option>
                     <Option value = 'plateNumber'>车牌号</Option>

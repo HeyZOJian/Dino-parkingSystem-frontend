@@ -116,9 +116,9 @@ export default class ParkingLotManage extends React.Component {
                     onCreate={this.handleCreate}
                     getAllParkingLots={this.props.getAllParkingLots}
                 />
-                <Button type='primary' onClick={this.showModal}>新增</Button>
-                <span style={{float:'right'}}>
-                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
+                <Button type='primary' onClick={this.showModal} style={{marginBottom: 10}}>新增</Button>
+                <span style={{float:'right',marginBottom: 10}}>
+                <Select style={{width: 100,marginRight: 5}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'all'>全部</Option>
                     <Option value = 'name'>名字</Option>
