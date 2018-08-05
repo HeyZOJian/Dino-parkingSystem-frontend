@@ -5,7 +5,6 @@ const ResourceAPi = {
     apiUrl: url.URL,
     getAllEmployees(successCallBack) {
         const token = localStorage.getItem("token")
-        console.log("13232121" + token)
         axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/users`)
@@ -21,7 +20,8 @@ const ResourceAPi = {
         axios.
             post(`${this.apiUrl}/users`, employee)
             .then(function (response) {
-                successCallBack(response.status);
+                console.log(response.data)
+                successCallBack(response.status,response.data);
             })
             .catch(function (error) {
                 console.log(error);
