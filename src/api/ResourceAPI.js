@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const ResourceAPi = {
-     apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
-//    apiUrl:'http://localhost:8081',
+    // apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
+    apiUrl:'http://localhost:8081',
     getAllEmployees(successCallBack) {
-        const token = localStorage.getItem("token")
+        const token = sessionStorage.getItem("token")
         axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/users`)
@@ -54,8 +54,8 @@ const ResourceAPi = {
     },
 
     getAllParkingLots(successCallBack) {
-        const token = localStorage.getItem("token")
-        axios.defaults.headers.common['Authorization'] = token;
+        // const token = localStorage.getItem("token")
+        // axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/parkingLots`)
             .then(function (response) {

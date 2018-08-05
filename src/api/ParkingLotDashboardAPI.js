@@ -6,7 +6,8 @@ const ParkingLotBashBoardAPI = {
     this.getServerData(dispatch, action);
   },
   getServerData(dispatch, action) {
-    let getDataUrl = 'https://dino-parking-system-backend.herokuapp.com/parkingLots/dashboard';
+    // let getDataUrl = 'https://dino-parking-system-backend.herokuapp.com/parkingLots/dashboard';
+    let getDataUrl ='http://localhost:8081/parkingLots/dashboard';
     axios
       .get(getDataUrl)
       .then((response) => {
