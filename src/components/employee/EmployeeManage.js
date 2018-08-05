@@ -22,6 +22,7 @@ export default class EmployeeManage extends React.Component {
         addVisible: false,
         modifyVisible: false,
         employeeId: undefined,
+        optionValue:'',
         context: '',
     };
 
@@ -69,6 +70,21 @@ export default class EmployeeManage extends React.Component {
         this.setState({ addVisible: false });
     }
 
+    // handleSearch = (value) =>{
+    //     console.log(this.state);
+    //     console.log(value);
+    //     const optionValue = this.state.optionValue;
+    //     //this.props.searchEmployees(optionValue,value)
+    //     //ResourceAPi.searchEmployees(optionValue,value);
+    // }
+
+    handleOptionvalue = (value) =>{
+        
+        console.log(value);
+        this.setState({optionValue:value})
+        
+    }
+
     handleCreate = () => {
         const form = this.formRef.props.form;
         form.validateFields((err, values) => {
@@ -100,6 +116,7 @@ export default class EmployeeManage extends React.Component {
         this.props.getAllEmployees();
           this.setState({ statusVisible: false });
       }
+
 
     componentDidMount() {
         this.props.getAllEmployees();
@@ -141,7 +158,7 @@ export default class EmployeeManage extends React.Component {
                 />
                 <Button type='primary' onClick={this.showModal}>新增</Button>
                 <span style={{float:'right'}}>
-                <Select style={{width: 100}}>
+                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     <Option value = 'id'>id</Option>
                     <Option value = 'username'>用户名</Option>
                     <Option value = 'nickname'>姓名</Option>
@@ -150,7 +167,14 @@ export default class EmployeeManage extends React.Component {
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => {
+                        if(this.state.optionValue&&value){
+                            this.props.getSearchEmployees(this.state.optionValue,value)
+                        }else{
+                            alert("AAAAAAA")
+                        }
+                    }}
+                    //getSearchEmployees={this.props.getSearchEmployees}
                     enterButton
                 />
                 </span>

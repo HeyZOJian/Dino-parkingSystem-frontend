@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 import EmployeeManage from "../components/employee/EmployeeManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllEmployees} from '../actions';
+import {getAllEmployees,getSearchEmployees} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state.employees);
+
     return {
-      employees: state.employees
+      employees: state.employees,
+
     };
   };
   
@@ -13,6 +16,12 @@ const mapStateToProps = (state, ownProps) => {
     return {
         getAllEmployees: () => {
             ResourceAPi.getAllEmployees(employees => dispatch(getAllEmployees(employees)));
+            
+        },
+        getSearchEmployees: (optionValue,value) =>{
+            console.log(optionValue);
+            console.log(value);
+            ResourceAPi.searchEmployees(optionValue,value,employees => dispatch(getSearchEmployees(employees)))
         }
     }
   };

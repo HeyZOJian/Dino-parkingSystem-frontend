@@ -6,6 +6,11 @@ export default (state = [], action) => {
           console.log(action.employees);
         return action.employees;
       }
+      case 'GET_SEARCH_EMPLOYEES':{
+        console.log(action.employees)
+        return action.employees
+
+      }
       default:
         return state;
     }
