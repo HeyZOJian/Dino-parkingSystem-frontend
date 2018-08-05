@@ -113,6 +113,7 @@ export default class ParkingBoyManage extends React.Component {
         return (
            
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
+            {/* <Button type='primary'  onClick={this.showModal}></Button> */}
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}}>
                     <Option value = 'id'>id</Option>
@@ -126,7 +127,7 @@ export default class ParkingBoyManage extends React.Component {
                     enterButton
                 />
                 </span>
-                <Table
+                <Table style={{clear:"both"}}
                     rowKey='id'
                     columns={this.columns}
                     expandedRowRender={record => 
