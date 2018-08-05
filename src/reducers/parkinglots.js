@@ -6,6 +6,10 @@ export default (state = [], action) => {
           console.log(action.parkingLots);
         return action.parkingLots;
       }
+      case 'GET_SEARCH_PARKINGLOTS':{
+        console.log(action.parkingLots);
+        return action.parkingLots;
+    }
       case 'UPDATE_NO_MANAGED_PARKINGLOTS': {
         console.log(state)
         console.log(state.filter(parkingLot => action.parkingLotsIds.some(id => id === parkingLot.id)))

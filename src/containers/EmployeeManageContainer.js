@@ -19,8 +19,6 @@ const mapStateToProps = (state, ownProps) => {
             
         },
         getSearchEmployees: (optionValue,value) =>{
-            console.log(optionValue);
-            console.log(value);
             ResourceAPi.searchEmployees(optionValue,value,employees => dispatch(getSearchEmployees(employees)))
         }
     }

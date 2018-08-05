@@ -18,6 +18,7 @@ export default (state = [], action) => {
             state.concat(action.parkingLots) : 
             state.filter(parkingLot => action.parkingLotsIds.every(id => id != parkingLot.id))
         }
+
         default:
             return state;
     }

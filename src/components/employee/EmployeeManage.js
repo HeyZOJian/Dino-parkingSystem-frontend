@@ -171,7 +171,7 @@ export default class EmployeeManage extends React.Component {
                         if(this.state.optionValue&&value){
                             this.props.getSearchEmployees(this.state.optionValue,value)
                         }else{
-                            alert("AAAAAAA")
+                            alert("搜索不能为空！")
                         }
                     }}
                     //getSearchEmployees={this.props.getSearchEmployees}

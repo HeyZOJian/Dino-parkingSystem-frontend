@@ -172,6 +172,18 @@ const ResourceAPi = {
             });
 
         },
+    searchParkingLots(optionValue,value,successCallBack){
+        axios
+            .get(`${this.apiUrl}/parkingLots?${optionValue}=${value}`,optionValue,value)
+            .then(function (response) {
+                console.log("ok");
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        },
 
     manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
         axios

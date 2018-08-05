@@ -92,11 +92,19 @@ export default class ParkingLotManage extends React.Component {
         this.props.getAllParkingLots();
           this.setState({ statusVisible: false });
       }
+    
+      handleOptionvalue = (value) =>{
+        
+        console.log(value);
+        this.setState({optionValue:value})
+        
+    }
 
     componentDidMount() {
         this.props.getAllParkingLots();
     }
     render() {
+        console.log(this.props)
         const {parkingLots} = this.props;
         return (
             
@@ -133,14 +141,21 @@ export default class ParkingLotManage extends React.Component {
                 />
                 <Button type='primary' onClick={this.showModal}>新增</Button>
                 <span style={{float:'right'}}>
-                <Select style={{width: 100}}>
+                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     <Option value = 'id'>id</Option>
                     <Option value = 'name'>名字</Option>
                     <Option value = 'size'>大小</Option>
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => {
+                        
+                        if(this.state.optionValue&&value){
+                            this.props.getSearchEmployees(this.state.optionValue,value)
+                        }else{
+                            alert("搜索不能为空！")
+                        }
+                    }}
                     enterButton
                 />
                 </span>
