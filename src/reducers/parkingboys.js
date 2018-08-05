@@ -6,6 +6,9 @@ export default (state = [], action) => {
           console.log(action.parkingBoys);
         return action.parkingBoys;
       }
+      case 'GET_SEARCH_PARKINGBOYS':{
+        return action.parkingBoys;
+      }
       default:
         return state;
     }

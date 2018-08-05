@@ -142,7 +142,7 @@ export default class ParkingLotManage extends React.Component {
                 <Button type='primary' onClick={this.showModal}>新增</Button>
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
-                    <Option value = 'id'>id</Option>
+                    {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'name'>名字</Option>
                     <Option value = 'size'>大小</Option>
                 </Select>
