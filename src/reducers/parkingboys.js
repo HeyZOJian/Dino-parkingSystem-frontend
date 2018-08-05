@@ -14,7 +14,14 @@ export default (state = [], action) => {
         return parkingBoys;
       }
       case 'GET_SEARCH_PARKINGBOYS':{
-        return action.parkingBoys;
+        console.log(action.parkingBoys);
+        const parkingBoys = [];
+        const length = action.parkingBoys.length
+        for(let i=0;i<length;i++){
+          parkingBoys[i]=action.parkingBoys[i];
+          parkingBoys[i].workStatus=changeWords(action.parkingBoys[i].workStatus)
+        }
+      return parkingBoys;
       }
       default:
         return state;
