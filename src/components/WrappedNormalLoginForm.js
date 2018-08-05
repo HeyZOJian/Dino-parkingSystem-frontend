@@ -20,9 +20,9 @@ class Login extends Component {
     const AntWrappedLoginForm = Form.create()(NormalLoginForm)
     return (
 
-      <div className="container">
-        <div className="login-container">
-          <h1 className="page-title">Login</h1>
+      <div className="container" style={{width:'100%',height:'700px',display:'flex',alignItems:'center'}}>
+        <div className="login-container" style={{width:'100%',textAlign: "center",border:"1px solid #cceff5",background:"#fafcfd",borderStyle:'outset'}}>
+          <h1 className="page-title">登录</h1>
           <div className="login-content">
             <AntWrappedLoginForm onLogin={this.props.onLogin} />
           </div>
