@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout ,Col,Avatar,Row,Button} from 'antd';
+import { Layout ,Col,Avatar,Row,Button,Icon} from 'antd';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 // import  MyHeader  from "./components/MyHeader";
@@ -31,8 +31,9 @@ console.log(1)
             <Row>
               <Col span={14}></Col>
               <Col span={9} style={{textAlign:"right"  }}>
-              <Avatar style={{  backgroundColor: '#87d068' }} shape="square" icon="user" onClick={()=>{localStorage.clear("nikname");window.location.href="../"}}/>
+             
               &nbsp;&nbsp;<span style={{  color: 'white' }}>Admin，欢迎您</span>
+              <Avatar style={{  backgroundColor: '#1890ff',marginLeft: 13,marginTop:-4,fontSize:16}} icon="logout" onClick={()=>{localStorage.clear("nikname");window.location.href="../"}}/>
               </Col>     
             </Row>      
           </Header>
