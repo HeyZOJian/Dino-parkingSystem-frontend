@@ -71,7 +71,7 @@ export default class OrderManage extends React.Component {
                     enterButton
                 />
                 </span>
-                <Table
+                <Table style={{clear:"both"}}
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={orders}

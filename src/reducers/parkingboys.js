@@ -13,6 +13,9 @@ export default (state = [], action) => {
           }
         return parkingBoys;
       }
+      case 'GET_SEARCH_PARKINGBOYS':{
+        return action.parkingBoys;
+      }
       default:
         return state;
     }

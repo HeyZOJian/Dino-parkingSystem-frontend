@@ -103,6 +103,13 @@ export default class ParkingBoyManage extends React.Component {
         }
     }
 
+    handleOptionvalue = (value) =>{
+        
+        console.log(value);
+        this.setState({optionValue:value})
+        
+    }
+
     componentDidMount() {
         this.props.getAllParkingBoys();
         this.props.getNoManagedParkingLots();
@@ -113,20 +120,27 @@ export default class ParkingBoyManage extends React.Component {
         return (
            
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
+            {/* <Button type='primary'  onClick={this.showModal}></Button> */}
                 <span style={{float:'right'}}>
-                <Select style={{width: 100}}>
-                    <Option value = 'id'>id</Option>
-                    <Option value = 'platenumber'>车牌号</Option>
-                    <Option value = 'type'>类型</Option>
+                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
+                    {/* <Option value = 'id'>id</Option> */}
+                    <Option value = 'nickname'>姓名</Option>
+                    <Option value = 'phone'>电话</Option>
                     <Option value = 'status'>状态</Option>
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => {
+                        if(this.state.optionValue&&value){
+                            this.props.getSearchParkingBoys(this.state.optionValue,value)
+                        }else{
+                            alert("搜索不能为空！")
+                        }
+                    }}
                     enterButton
                 />
                 </span>
-                <Table
+                <Table style={{clear:"both"}}
                     rowKey='id'
                     columns={this.columns}
                     expandedRowRender={record => 

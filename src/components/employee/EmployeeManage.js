@@ -149,7 +149,7 @@ export default class EmployeeManage extends React.Component {
                 <Button type='primary' onClick={this.showModal}>新增</Button>
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
-                    <Option value = 'id'>id</Option>
+                    {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'username'>用户名</Option>
                     <Option value = 'nickname'>姓名</Option>
                     <Option value = 'email'>E-mail</Option>
@@ -164,7 +164,6 @@ export default class EmployeeManage extends React.Component {
                             alert("搜索不能为空！")
                         }
                     }}
-                    //getSearchEmployees={this.props.getSearchEmployees}
                     enterButton
                 />
                 </span>
