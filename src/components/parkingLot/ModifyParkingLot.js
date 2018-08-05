@@ -69,7 +69,7 @@ const ModifyParkingLot = Form.create()(
 
         onChangeName = (e) => {
             this.setState({ user: e.target.value });
-          }
+        }
 
         render() {
             const { getFieldDecorator } = this.props.form;
@@ -120,13 +120,10 @@ const ModifyParkingLot = Form.create()(
                         >
                             {getFieldDecorator('name', {
                                 rules: [{
-                                   message: '请输入停车场名称!',
+                                    message: '请输入停车场名称!',
                                 }],
                             })(
-                                <Input 
-                                defaultValue={'mys456546ite'}
-                                onChange={this.onChangeName}
-                                />
+                                <Input/>
                             )}
                         </FormItem>
                         <FormItem
@@ -138,7 +135,7 @@ const ModifyParkingLot = Form.create()(
                                     message: '请输入停车场车位数量!',
                                 }],
                             })(
-                                <Input value="数量"/>
+                                <Input />
                             )}
                         </FormItem>
                     </Form>
