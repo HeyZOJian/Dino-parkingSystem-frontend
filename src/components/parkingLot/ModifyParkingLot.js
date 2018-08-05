@@ -67,6 +67,10 @@ const ModifyParkingLot = Form.create()(
             this.props.form.resetFields();
         }
 
+        onChangeName = (e) => {
+            this.setState({ user: e.target.value });
+        }
+
         render() {
             const { getFieldDecorator } = this.props.form;
             const { autoCompleteResult } = this.state;
@@ -89,7 +93,7 @@ const ModifyParkingLot = Form.create()(
                 <Modal
                     visible={this.props.visible}
                     title="修改停车场信息"
-                    okText="Modify"
+                    okText="modify"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
 
@@ -116,10 +120,10 @@ const ModifyParkingLot = Form.create()(
                         >
                             {getFieldDecorator('name', {
                                 rules: [{
-                                    required: true, message: '请输入停车场名称!',
+                                    message: '请输入停车场名称!',
                                 }],
                             })(
-                                <Input defaultValue="mysite"/>
+                                <Input/>
                             )}
                         </FormItem>
                         <FormItem
@@ -128,10 +132,10 @@ const ModifyParkingLot = Form.create()(
                         >
                             {getFieldDecorator('size', {
                                 rules: [{
-                                    required: true, message: '请输入停车场车位数量!',
+                                    message: '请输入停车场车位数量!',
                                 }],
                             })(
-                                <Input defaultValue="数量"/>
+                                <Input />
                             )}
                         </FormItem>
                     </Form>

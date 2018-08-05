@@ -1,6 +1,6 @@
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal, Alert  } from 'antd';
 import React from 'react';
-import ResourceAPi from '../../api/ResourceAPI';
+import ResourceAPI from '../../api/ResourceAPI';
 import {Link} from 'react-router-dom'
 
 const FormItem = Form.Item;
@@ -16,11 +16,12 @@ const AddEmployee = Form.create()(
         context: '',
     };
 
-    getStatusCode(statusCode) {
+    getStatusCode(statusCode,passwd) {
         if (statusCode === 201) {
+            const message = "创建成功，密码为"+passwd;
             this.setState({
                 visible: true,
-                context: <Alert message="Success Text" type="success" />,
+                context: <Alert message={message} type="success" />,
             })
         } else {
             this.setState({
@@ -34,7 +35,7 @@ const AddEmployee = Form.create()(
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                ResourceAPi.addEmployee(values, (statusCode) => this.getStatusCode(statusCode));
+                ResourceAPI.addEmployee(values, (statusCode,passwd) => this.getStatusCode(statusCode,passwd));
             }
         });
     }
