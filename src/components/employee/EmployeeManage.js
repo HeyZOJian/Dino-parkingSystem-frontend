@@ -75,7 +75,6 @@ export default class EmployeeManage extends React.Component {
             if (err) {
                 return;
             }
-
             console.log('Received values of form: ', values);
             form.resetFields();
             this.setState({ addVisible: false });

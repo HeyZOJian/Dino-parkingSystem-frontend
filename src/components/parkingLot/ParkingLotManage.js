@@ -42,12 +42,12 @@ export default class ParkingLotManage extends React.Component {
         if (statusCode === 200) {
             this.setState({
                 statusVisible: true,
-                context: <Alert message="Success Text" type="success" />,
+                context: <Alert message="操作成功" type="success" />,
             })
         } else {
             this.setState({
                 statusVisible: true,
-                context: <Alert message="Error Text" type="error" />,
+                context: <Alert message="操作失败" type="error" />,
             })
         }
     }
