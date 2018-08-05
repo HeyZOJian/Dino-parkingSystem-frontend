@@ -124,6 +124,7 @@ export default class ParkingBoyManage extends React.Component {
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
+                    <Option value = 'all'>全部</Option>
                     <Option value = 'nickname'>姓名</Option>
                     <Option value = 'phone'>电话</Option>
                     <Option value = 'workStatus'>状态</Option>
@@ -131,10 +132,10 @@ export default class ParkingBoyManage extends React.Component {
                 <Search style={{width: 200}}
                     placeholder="input search text"
                     onSearch={value => {
-                        if(this.state.optionValue&&value){
+                        if(this.state.optionValue){
                             this.props.getSearchParkingBoys(this.state.optionValue,value)
                         }else{
-                            alert("搜索不能为空！")
+                            alert("选择不能为空！")
                         }
                     }}
                     enterButton

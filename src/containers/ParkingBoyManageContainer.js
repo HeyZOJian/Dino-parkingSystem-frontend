@@ -37,7 +37,9 @@ const mapStateToProps = (state, ownProps) => {
         },
         getSearchParkingBoys: (optionValue,value) =>{
             let inputValue = '';
-            if(value=="上班"){
+            if(value==""){
+                inputValue='';
+            }else if(value=="上班"){
                  inputValue = STATUS_ONDUTY;
             }else if(value=="下班"){
                 inputValue = STATUS_OFFDUTY

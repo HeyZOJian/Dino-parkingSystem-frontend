@@ -143,6 +143,7 @@ export default class ParkingLotManage extends React.Component {
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
+                    <Option value = 'all'>全部</Option>
                     <Option value = 'name'>名字</Option>
                     <Option value = 'size'>大小</Option>
                 </Select>
@@ -150,10 +151,10 @@ export default class ParkingLotManage extends React.Component {
                     placeholder="input search text"
                     onSearch={value => {
                         
-                        if(this.state.optionValue&&value){
+                        if(this.state.optionValue){
                             this.props.getSearchEmployees(this.state.optionValue,value)
                         }else{
-                            alert("搜索不能为空！")
+                            alert("选择不能为空！")
                         }
                     }}
                     enterButton

@@ -148,6 +148,7 @@ export default class EmployeeManage extends React.Component {
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
+                    <Option value = 'all'>全部</Option>
                     <Option value = 'username'>用户名</Option>
                     <Option value = 'nickname'>姓名</Option>
                     <Option value = 'email'>E-mail</Option>
@@ -155,11 +156,11 @@ export default class EmployeeManage extends React.Component {
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
-                    onSearch={value => {
-                        if(this.state.optionValue&&value){
+                    onSearch={value => {          
+                        if(this.state.optionValue){
                             this.props.getSearchEmployees(this.state.optionValue,value)
                         }else{
-                            alert("搜索不能为空！")
+                            alert("选择不能为空！")
                         }
                     }}
                     enterButton

@@ -68,7 +68,7 @@ export default class OrderManage extends React.Component {
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
-                    <Option value = ''>全部</Option>
+                    <Option value = 'all'>全部</Option>
                     <Option value = 'plateNumber'>车牌号</Option>
                     <Option value = 'type'>类型</Option>
                     <Option value = 'status'>状态</Option>
@@ -76,7 +76,12 @@ export default class OrderManage extends React.Component {
                 <Search style={{width: 200}}
                     placeholder="input search text"
                     onSearch={value => {
-                            this.props.getSearchOrders(this.state.optionValue,value)                     
+                        if(this.state.optionValue){
+                            this.props.getSearchOrders(this.state.optionValue,value)      
+                        }else{
+                            alert("选择不能为空！")
+                        }
+                                           
                     }}
                     enterButton
                 />
