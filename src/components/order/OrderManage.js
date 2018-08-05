@@ -42,6 +42,13 @@ export default class OrderManage extends React.Component {
         this.setState({ visible: false });
     }
 
+    handleOptionvalue = (value) =>{
+        
+        console.log(value);
+        this.setState({optionValue:value})
+        
+    }
+
     componentDidMount() {
         this.props.getAllOrders();
     }
@@ -59,15 +66,18 @@ export default class OrderManage extends React.Component {
                     dispatchOrderSuccess={this.props.dispatchOrderSuccess}
                 />
                 <span style={{float:'right'}}>
-                <Select style={{width: 100}}>
-                    <Option value = 'id'>id</Option>
-                    <Option value = 'platenumber'>车牌号</Option>
+                <Select style={{width: 100}} onChange={this.handleOptionvalue}>
+                    {/* <Option value = 'id'>id</Option> */}
+                    <Option value = ''>全部</Option>
+                    <Option value = 'plateNumber'>车牌号</Option>
                     <Option value = 'type'>类型</Option>
                     <Option value = 'status'>状态</Option>
                 </Select>
                 <Search style={{width: 200}}
                     placeholder="input search text"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => {
+                            this.props.getSearchOrders(this.state.optionValue,value)                     
+                    }}
                     enterButton
                 />
                 </span>

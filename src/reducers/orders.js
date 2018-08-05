@@ -13,6 +13,17 @@ export default (state = [], action) => {
           }
         return orders;
       }
+      case 'GET_SEARCH_ORDERS': {
+        console.log(action.orders);
+        const orders = [];
+        const length = action.orders.length
+        for(let i=0;i<length;i++){
+          orders[i]=action.orders[i];
+          orders[i].type=changeWords(action.orders[i].type)
+          orders[i].status=changeWords(action.orders[i].status)
+        }
+      return orders;
+    }
       case 'DISPATCH_ORDER_SUCCESS': {
           return [...state].map(i => {
               if (i.id === action.id) {

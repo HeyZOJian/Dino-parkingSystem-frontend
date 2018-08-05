@@ -74,10 +74,8 @@ export default class EmployeeManage extends React.Component {
     // }
 
     handleOptionvalue = (value) =>{
-        
         console.log(value);
         this.setState({optionValue:value})
-        
     }
 
     handleCreate = () => {

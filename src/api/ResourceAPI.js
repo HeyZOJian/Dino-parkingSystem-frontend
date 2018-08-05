@@ -198,6 +198,20 @@ const ResourceAPi = {
                 });
     
             },
+            searchOrders(optionValue,value,successCallBack){
+
+                axios
+                    .get(`${this.apiUrl}/orders?${optionValue}=${value}`,optionValue,value)
+                    .then(function (response) {
+                        console.log("ok");
+                        console.log(response.data)
+                        successCallBack(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+        
+                },
 
     manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
         axios

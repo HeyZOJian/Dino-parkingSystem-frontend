@@ -10,6 +10,7 @@ export const getParkingLotsByParkingBoyId = (parkingLots) => ({type: 'GET_PARKIN
 export const getSearchEmployees = (employees) => ({type: 'GET_SEARCH_EMPLOYEES', employees})
 export const getSearchParkingLots = (parkingLots) => ({type: 'GET_SEARCH_PARKINGLOTS', parkingLots})
 export const getSearchParkingBoys = (parkingBoys) => ({type: 'GET_SEARCH_PARKINGBOYS', parkingBoys})
+export const getSearchOrders = (orders) => ({type: 'GET_SEARCH_ORDERS', orders})
 export const updateManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
 export const updateNoManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_NO_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
 export const updateEmployeeStatus = (id) => ({type: 'UPDATE_EMPLOYEE_STATUS', id})
