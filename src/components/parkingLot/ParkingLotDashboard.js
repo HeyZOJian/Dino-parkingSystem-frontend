@@ -10,11 +10,11 @@ class ParkingLotDashboard extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    this
-      .props
-      .load();
-  }
+  // componentWillMount() {
+  //   this
+  //     .props
+  //     .load();
+  // }
 
   render() {
     return (
