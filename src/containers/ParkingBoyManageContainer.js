@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import ParkingBoyManage from "../components/parkingBoy/ParkingBoyManage";
 import ResourceAPi from '../api/ResourceAPI';
 import {getAllParkingBoys, getSearchParkingBoys, getParkingLotsByParkingBoyId, getAllParkingLots,
-    updateManagedParkingLots, updateNoManagedParkingLots} from '../actions';
+    updateManagedParkingLots, updateNoManagedParkingLots, updateParkingBoyStatus} from '../actions';
 import {STATUS_ONDUTY,STATUS_OFFDUTY,STATUS_LATE,STATUS_LEAVE} from '../constant/constant'
 
 const mapStateToProps = (state, ownProps) => {
@@ -53,6 +53,10 @@ const mapStateToProps = (state, ownProps) => {
             console.log(optionValue)
             console.log(value)
             ResourceAPi.searchParkingBoys(optionValue,inputValue,employees => dispatch(getSearchParkingBoys(employees)))
+        },
+        
+        updateParkingBoyStatus: (id, parkingBoyStatus) => {
+            ResourceAPi.updateEmployeeStatus(id, parkingBoyStatus, () => dispatch(updateParkingBoyStatus(id)))
         }
 
     }

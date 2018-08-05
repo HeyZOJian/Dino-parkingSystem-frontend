@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Input, Select, Button, Table, Divider, Modal, Alert } from 'antd';
+import { Layout, Input, Select, Button, Table, Divider, Modal, Alert, message } from 'antd';
 import {Link} from 'react-router-dom'
 import ResourceAPI from '../../api/ResourceAPI';
 import AddParkingLot from '../parkingLot/AddParkingLot';
@@ -19,14 +19,15 @@ export default class ParkingLotManage extends React.Component {
     };
 
     columns = [
-        { title: 'ID', dataIndex: 'id', key: 'id'},
-        { title: '名字', dataIndex: 'name', key: 'name' },
-        { title: '大小', dataIndex: 'size', key: 'size' },
-        { title: '操作', key: 'operation', render: (text, record) => (
+        { title: 'ID', dataIndex: 'id', key: 'id', align: 'center'},
+        { title: '名字', dataIndex: 'name', key: 'name', align: 'center' },
+        { title: '大小', dataIndex: 'size', key: 'size', align: 'center' },
+        { title: '停车数', dataIndex: 'carNum', key: 'carNum', align: 'center' },
+        { title: '操作', key: 'operation', align: 'center', render: (text, record) => (
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a onClick={() => this.changeParkingLotStatus(record.id, record.status)}>{record.status ? '注销' : '恢复'}</a>
+                <a disabled={record.carNum != 0} onClick={() => this.changeParkingLotStatus(record.id, record.status)}>{record.status ? '注销' : '恢复'}</a>
             </span>
         ),
     },
@@ -35,20 +36,15 @@ export default class ParkingLotManage extends React.Component {
 
     changeParkingLotStatus = (parkingLotId, parkingLotStatus) => {
         parkingLotStatus = parkingLotStatus ? false : true;
-        ResourceAPI.changeParkingLotStatus(parkingLotId, parkingLotStatus, (statusCode) => this.getStatusCode(statusCode))
+        ResourceAPI.changeParkingLotStatus(parkingLotId, parkingLotStatus, (statusCode) => this.getStatusCode(statusCode, parkingLotId))
     }
 
-    getStatusCode(statusCode) {
+    getStatusCode(statusCode, id) {
         if (statusCode === 200) {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="操作成功" type="success" />,
-            })
+            this.props.updateParkingLotStatus(id);
+            message.success('操作成功！');
         } else {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="操作失败" type="error" />,
-            })
+            message.error(`操作失败！`);
         }
     }
 
@@ -88,11 +84,6 @@ export default class ParkingLotManage extends React.Component {
         this.formRef = formRef;
     }
 
-    handleOk = () => {
-        this.props.getAllParkingLots();
-          this.setState({ statusVisible: false });
-      }
-    
       handleOptionvalue = (value) =>{
         
         console.log(value);
@@ -103,27 +94,13 @@ export default class ParkingLotManage extends React.Component {
     componentDidMount() {
         this.props.getAllParkingLots();
     }
+    
     render() {
         console.log(this.props)
         const {parkingLots} = this.props;
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
-                <Modal
-                    visible={this.state.statusVisible}
-                    title="Title"
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                    footer={[
-                        <Link to='/App/ParkingLotManage'>
-                            <Button key="submit" type="primary" onClick={this.handleOk}>
-                                确定
-                            </Button>
-                        </Link>,
-                    ]}
-                >
-                    {this.state.context}
-                </Modal>
                 <ModifyParkingLot
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}
@@ -161,6 +138,8 @@ export default class ParkingLotManage extends React.Component {
                 />
                 </span>
                 <Table
+                    bordered
+                    rowKey='id'
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={parkingLots}
