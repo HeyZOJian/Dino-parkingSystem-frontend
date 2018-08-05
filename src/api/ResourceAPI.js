@@ -1,8 +1,8 @@
 import axios from 'axios';
+import * as url from '../constant/constant'
 
 const ResourceAPi = {
-    // apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
-    apiUrl:'http://localhost:8081',
+    apiUrl: url.URL,
     getAllEmployees(successCallBack) {
         const token = localStorage.getItem("token")
         console.log("13232121" + token)

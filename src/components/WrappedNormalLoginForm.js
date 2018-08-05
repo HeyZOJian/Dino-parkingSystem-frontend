@@ -4,6 +4,7 @@ import '../css/login.css';
 import { Form, Icon, Input, Button, notification, Checkbox } from 'antd';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
+import * as url from '../constant/constant'
 
 const FormItem = Form.Item;
 
@@ -59,8 +60,7 @@ class NormalLoginForm extends React.Component {
       .validateFields((err, values) => {
         if (!err) {
           //  console.log('Received values of form: ', values);
-          // axios.post("https://dino-parking-system-backend.herokuapp.com/login", {
-             axios.post("http://localhost:8081/login", {
+          axios.post(url.URL+"/login", {
             "username": values.userName,
             "password": values.password
           }).then(function (response) {
