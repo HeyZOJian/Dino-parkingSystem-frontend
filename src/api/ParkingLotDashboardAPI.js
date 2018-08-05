@@ -7,6 +7,8 @@ const ParkingLotBashBoardAPI = {
     this.getServerData(dispatch, action);
   },
   getServerData(dispatch, action) {
+    const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
     let getDataUrl =url.URL+'/parkingLots/dashboard';
     axios
       .get(getDataUrl)

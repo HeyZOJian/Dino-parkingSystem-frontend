@@ -34,9 +34,9 @@ const ModifyEmployee = Form.create()(
             e.preventDefault();
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if (!err) {
-                    console.log('Received values of form: ', {...values, position: this.state.position});
+                    console.log('Received values of form: ', {...values, roleName: this.state.position});
                     console.log(this.props.employeeId);
-                    ResourceAPi.modifyEmployeeInfo({ id: this.props.employeeId, ...{...values, position: this.state.position} }, (statusCode) => this.getStatusCode(statusCode));
+                    ResourceAPi.modifyEmployeeInfo({ id: this.props.employeeId, ...values, roleName: this.state.position }, (statusCode) => this.getStatusCode(statusCode));
                 }
             });
         }
@@ -126,7 +126,6 @@ const ModifyEmployee = Form.create()(
                 <Modal
                     visible={this.props.visible}
                     title="修改员工信息"
-                    okText="modify"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
 

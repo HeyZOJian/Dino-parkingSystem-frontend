@@ -5,6 +5,7 @@ import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from '../employee/AddEmployee';
 import ModifyEmployee from '../employee/ModifyEmployee';
 import axios from 'axios'
+import ModifyParkingBoy from './ModifyParkingBoy';
 
 const { Content } = Layout;
 const {Search} = Input;
@@ -20,17 +21,19 @@ export default class ParkingBoyManage extends React.Component {
         targetKeys: [],
         expandedRowKeys: [],
         recordId:'',
-        loading: false
+        loading: false,
+        parkingBoyId: '',
+        workStatus: '',
     };
 
     columns = [
-        { title: 'ID', dataIndex: 'id', key: 'id'},
-        {title: '姓名', dataIndex: 'nickname', key: 'nickname'},
-        { title: '电话号码', dataIndex: 'phone', key: 'phone' },
-        { title: '状态', dataIndex: 'workStatus', key: 'workStatus' },
-        { title: '操作', key: 'operation', render: (text, record) => (
+        { title: 'ID', dataIndex: 'id', key: 'id', align: 'center'},
+        {title: '姓名', dataIndex: 'nickname', key: 'nickname', align: 'center'},
+        { title: '电话号码', dataIndex: 'phone', key: 'phone', align: 'center' },
+        { title: '状态', dataIndex: 'workStatus', key: 'workStatus', align: 'center' },
+        { title: '操作', key: 'operation', align: 'center', render: (text, record) => (
             <span>
-                <a onClick={() => this.showModifyModal(record.id)}>修改</a>
+                <a onClick={() => this.showModifyModal(record.id, record.workStatus)}>修改</a>
                 <Divider type='vertical' />
                 <a onClick={() => this.updateParkingBoyStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
@@ -120,6 +123,20 @@ export default class ParkingBoyManage extends React.Component {
         
     }
 
+    showModifyModal = (parkingBoyId, workStatus) => {
+        this.setState({
+            visible: true,
+            parkingBoyId,
+            workStatus,
+        })
+    }
+
+    handleCancel = () => {
+        this.setState({
+            visible: false
+        })
+    }
+
     componentDidMount() {
         // this.props.getAllParkingBoys();
         this.props.getNoManagedParkingLots();
@@ -130,7 +147,14 @@ export default class ParkingBoyManage extends React.Component {
         return (
            
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
-            {/* <Button type='primary'  onClick={this.showModal}></Button> */}
+                <ModifyParkingBoy
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    onCreate={this.handleCreate}
+                    getAllParkingBoys={this.props.getAllParkingBoys}
+                    parkingBoyId={this.state.parkingBoyId}
+                    workStatus={this.state.workStatus}
+                />
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
@@ -151,6 +175,7 @@ export default class ParkingBoyManage extends React.Component {
                 />
                 </span>
                 <Table style={{clear:"both"}}
+                    bordered
                     rowKey='id'
                     columns={this.columns}
                     expandedRowRender={record => 

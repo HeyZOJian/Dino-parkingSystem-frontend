@@ -59,6 +59,8 @@ const ResourceAPi = {
     },
 
     getAllParkingLots(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/parkingLots`)
             .then(function (response) {
@@ -70,6 +72,8 @@ const ResourceAPi = {
     },
 
     getAllOrders(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/orders`)
             .then(function (response) {
@@ -81,6 +85,8 @@ const ResourceAPi = {
     },
 
     getAllParkingBoys(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/parkingBoys`)
             .then(function (response) {

@@ -13,13 +13,13 @@ class ChooseParkingBoy extends React.Component {
         value: 1,
     }
     columns = [
-        { title: 'ID', dataIndex: 'id', key: 'id'},
-        { title: '姓名', dataIndex: 'nickname', key: 'nickname' },
-        { title: '停车场数量', dataIndex: 'lotNumber', key: 'lotNumber' },
-        { title: '停车数', dataIndex: 'carNumber', key: 'carNumber' },
-        { title: '已接单数', dataIndex: 'orderNumber', key: 'orderNumber' },
-        { title: '总车位', dataIndex: 'total', key: 'total' },
-        { title: '', key: 'operation', render: (text, record) => (
+        { title: 'ID', dataIndex: 'id', key: 'id', align: 'center'},
+        { title: '姓名', dataIndex: 'nickname', key: 'nickname', align: 'center' },
+        { title: '停车场数量', dataIndex: 'lotNumber', key: 'lotNumber', align: 'center' },
+        { title: '停车数', dataIndex: 'carNumber', key: 'carNumber', align: 'center' },
+        { title: '已接单数', dataIndex: 'orderNumber', key: 'orderNumber', align: 'center' },
+        { title: '总车位', dataIndex: 'total', key: 'total', align: 'center' },
+        { title: '', key: 'operation', align: 'center', render: (text, record) => (
             <Radio value={record.id} />
         ),},
     ];
@@ -49,15 +49,17 @@ class ChooseParkingBoy extends React.Component {
 
     render() {
         return (
-            <Modal
+            <Modal width={590}
                 visible={this.props.visible}
-                title="Create a new collection"
+                title="选择要指派的停车员"
                 onCancel={() => {this.setState({value: undefined}) ;this.props.onCancel()}}
                 onOk={() => this.handleSubmit()}
 
             >
                 <RadioGroup onChange={(e) => this.onChange(e)} value={this.state.value}>
                     <Table
+                        rowKey='id'
+                        bordered
                         columns={this.columns}
                         dataSource={this.props.parkingBoys}
                     />
