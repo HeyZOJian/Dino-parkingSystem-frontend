@@ -21,7 +21,7 @@ export default class ParkingLotManage extends React.Component {
     columns = [
         { title: 'ID', dataIndex: 'id', key: 'id', align: 'center'},
         { title: '名字', dataIndex: 'name', key: 'name', align: 'center' },
-        { title: '大小', dataIndex: 'size', key: 'size', align: 'center' },
+        { title: '车位数', dataIndex: 'size', key: 'size', align: 'center' },
         { title: '停车数', dataIndex: 'carNum', key: 'carNum', align: 'center' },
         { title: '操作', key: 'operation', align: 'center', render: (text, record) => (
             <span>

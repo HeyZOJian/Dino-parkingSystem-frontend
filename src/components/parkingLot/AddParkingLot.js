@@ -124,7 +124,7 @@ const AddParkingLot = Form.create()(
             <Form onSubmit={this.handleSubmit}>
                 <Modal
                     visible={this.state.visible}
-                    title="Title"
+                    title="提示"
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
