@@ -1,10 +1,10 @@
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal, Alert } from 'antd';
+import { Form, Input, Select, Button, AutoComplete, Modal, Alert } from 'antd';
 import React from 'react';
 import ResourceAPI from '../../api/ResourceAPI';
 import { Link } from 'react-router-dom'
 
 const FormItem = Form.Item;
-const Option = Select.Option;
+// const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
 const ModifyParkingLot = Form.create()(
@@ -20,12 +20,12 @@ const ModifyParkingLot = Form.create()(
             if (statusCode === 200) {
                 this.setState({
                     visible: true,
-                    context: <Alert message="Success Text" type="success" />,
+                    context: <Alert message="修改成功" type="success" />,
                 })
             } else {
                 this.setState({
                     visible: true,
-                    context: <Alert message="Error Text" type="error" />,
+                    context: <Alert message="修改失败" type="error" />,
                 })
             }
         }
@@ -44,23 +44,6 @@ const ModifyParkingLot = Form.create()(
             const value = e.target.value;
             this.setState({ confirmDirty: this.state.confirmDirty || !!value });
         }
-
-        // compareToFirstPassword = (rule, value, callback) => {
-        //     const form = this.props.form;
-        //     if (value && value !== form.getFieldValue('password')) {
-        //         callback('Two passwords that you enter is inconsistent!');
-        //     } else {
-        //         callback();
-        //     }
-        // }
-
-        // validateToNextPassword = (rule, value, callback) => {
-        //     const form = this.props.form;
-        //     if (value && this.state.confirmDirty) {
-        //         form.validateFields(['confirm'], { force: true });
-        //     }
-        //     callback();
-        // }
 
         handleWebsiteChange = (value) => {
             let autoCompleteResult;
@@ -98,18 +81,6 @@ const ModifyParkingLot = Form.create()(
                     sm: { span: 16 },
                 },
             };
-            // const tailFormItemLayout = {
-            //     wrapperCol: {
-            //         xs: {
-            //             span: 24,
-            //             offset: 0,
-            //         },
-            //         sm: {
-            //             span: 16,
-            //             offset: 8,
-            //         },
-            //     },
-            // };
 
             const websiteOptions = autoCompleteResult.map(website => (
                 <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
@@ -117,7 +88,7 @@ const ModifyParkingLot = Form.create()(
             return (
                 <Modal
                     visible={this.props.visible}
-                    title="Modify the parkingLot"
+                    title="修改停车场信息"
                     okText="Modify"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
@@ -145,26 +116,22 @@ const ModifyParkingLot = Form.create()(
                         >
                             {getFieldDecorator('name', {
                                 rules: [{
-                                    required: true, message: 'Please input the parkingLot name!',
-                                }
-                                    // , {
-                                    //     validator: this.validateToNextPassword,
-                                    // }
-                                ],
+                                    required: true, message: '请输入停车场名称!',
+                                }],
                             })(
-                                <Input />
+                                <Input defaultValue="mysite"/>
                             )}
                         </FormItem>
                         <FormItem
                             {...formItemLayout}
-                            label="停车场大小"
+                            label="停车场车位数"
                         >
                             {getFieldDecorator('size', {
                                 rules: [{
-                                    required: true, message: 'Please input the size of the parkingLot!',
+                                    required: true, message: '请输入停车场车位数量!',
                                 }],
                             })(
-                                <Input />
+                                <Input defaultValue="数量"/>
                             )}
                         </FormItem>
                     </Form>

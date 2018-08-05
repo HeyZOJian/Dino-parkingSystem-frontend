@@ -20,12 +20,12 @@ const AddParkingLot = Form.create()(
         if (statusCode === 201) {
             this.setState({
                 visible: true,
-                context: <Alert message="Success Text" type="success" />,
+                context: <Alert message="创建成功" type="success" />,
             })
         } else {
             this.setState({
                 visible: true,
-                context: <Alert message="Error Text" type="error" />,
+                context: <Alert message="创建失败" type="error" />,
             })
         }
     }
@@ -116,7 +116,7 @@ const AddParkingLot = Form.create()(
         return (
             <Modal
                 visible={this.props.visible}
-                title="Create a new collection"
+                title="创建停车场"
                 okText="Create"
                 onCancel={this.props.onCancel}
                 onOk={this.handleSubmit}
@@ -144,7 +144,7 @@ const AddParkingLot = Form.create()(
                 >
                     {getFieldDecorator('name', {
                         rules: [{
-                            required: true, message: 'Please input the parkingLot name!',
+                            required: true, message: '请输入停车场名字!',
                         }
                         // , {
                         //     validator: this.validateToNextPassword,
@@ -156,11 +156,11 @@ const AddParkingLot = Form.create()(
                 </FormItem>
                 <FormItem
                     {...formItemLayout}
-                    label="停车场大小"
+                    label="停车场车位数"
                 >
                     {getFieldDecorator('size', {
                         rules: [{
-                            required: true, message: 'Please input the size of the parkingLot!',
+                            required: true, message: '请输入停车场车位数量!',
                         }],
                     })(
                         <Input />

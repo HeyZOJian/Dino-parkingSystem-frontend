@@ -117,8 +117,8 @@ const ModifyEmployee = Form.create()(
             return (
                 <Modal
                     visible={this.props.visible}
-                    title="Create a new collection"
-                    okText="Create"
+                    title="修改员工信息"
+                    okText="modify"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
 
@@ -157,9 +157,9 @@ const ModifyEmployee = Form.create()(
                         >
                             {getFieldDecorator('email', {
                                 rules: [{
-                                    type: 'email', message: 'The input is not valid E-mail!',
+                                    type: 'email', message: 'E-mail格式错误!',
                                 }, {
-                                    message: 'Please input your E-mail!',
+                                    message: '请输入E-mail!',
                                 }],
                             })(
                                 <Input />
@@ -170,7 +170,7 @@ const ModifyEmployee = Form.create()(
                             label="电话号码"
                         >
                             {getFieldDecorator('phone', {
-                                rules: [{ message: 'Please input your phone number!' }],
+                                rules: [{ message: '请输入电话号码!' }],
                             })(
                                 <Input />
                             )}
