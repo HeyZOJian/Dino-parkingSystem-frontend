@@ -1,9 +1,6 @@
 import axios from 'axios';
-<<<<<<< HEAD
 import * as url from '../constant/constant'
-=======
 import {message} from 'antd';
->>>>>>> dispatch_parkinglots
 
 const ResourceAPi = {
     apiUrl: url.URL,
@@ -148,6 +145,7 @@ const ResourceAPi = {
                 console.log(error);
             })
     },
+    
     changeParkingLotStatus(parkingLotId, parkingLotStatus, successCallBack) {
         axios({
             method: 'patch',
@@ -161,6 +159,8 @@ const ResourceAPi = {
             .catch(function (error) {
                 console.log(error);
             })
+        },
+
     manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
         axios
             .put(`${this.apiUrl}/parkingBoys/${id}/parkingLots`, {
