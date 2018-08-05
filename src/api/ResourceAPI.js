@@ -153,7 +153,6 @@ const ResourceAPi = {
             method: 'patch',
             url: `${this.apiUrl}/parkingLots/${parkingLotId}`,
             headers: { 'content-type': 'application/json' },
-            data: parkingLotStatus
         })
             .then(function (response) {
                 successCallBack(response.status);

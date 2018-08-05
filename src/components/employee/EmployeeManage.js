@@ -169,6 +169,7 @@ export default class EmployeeManage extends React.Component {
                 />
                 </span>
                 <Table
+                    rowKey='id'
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={employees}

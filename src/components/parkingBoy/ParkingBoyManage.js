@@ -27,7 +27,7 @@ export default class ParkingBoyManage extends React.Component {
         { title: 'ID', dataIndex: 'id', key: 'id'},
         {title: '姓名', dataIndex: 'nickname', key: 'nickname'},
         { title: '电话号码', dataIndex: 'phone', key: 'phone' },
-        { title: '状态', dataIndex: 'status', key: 'status' },
+        { title: '状态', dataIndex: 'workStatus', key: 'workStatus' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
@@ -126,7 +126,7 @@ export default class ParkingBoyManage extends React.Component {
                     enterButton
                 />
                 </span>
-                <Table
+                <Table style={{clear:'both'}}
                     rowKey='id'
                     columns={this.columns}
                     expandedRowRender={record => 
