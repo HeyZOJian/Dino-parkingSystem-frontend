@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97029c17-ef86-4049-9c2a-6ef594e5ecee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/employee/EmployeeManage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/employee/EmployeeManage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/employee/ModifyEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/employee/ModifyEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parkingLot/AddParkingLot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parkingLot/AddParkingLot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parkingLot/ParkingLotManage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parkingLot/ParkingLotManage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constant/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constant/constant.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,14 +13,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ParkingLotDashboardAPI.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/ParkingLotDashboardAPI.js">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="ResourceAPI.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/ResourceAPI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="163" column="32" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifyParkingLot.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="constant.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/constant/constant.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="1" column="44" lean-forward="true" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -73,6 +85,8 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/WrappedNormalLoginForm.js" />
         <option value="$PROJECT_DIR$/src/api/ResourceAPI.js" />
+        <option value="$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js" />
+        <option value="$PROJECT_DIR$/src/constant/constant.js" />
       </list>
     </option>
   </component>
@@ -263,13 +277,13 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.30194804" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.39718616" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.28246754" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.5" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.12846482" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -341,13 +355,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MySider.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -380,9 +387,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parkingLot/AddParkingLot.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ParkingLotDashboard.js">
@@ -609,8 +613,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/ResourceAPI.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="159" column="5" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
+        <state relative-caret-position="187">
+          <caret line="163" column="32" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parkingLot/ModifyParkingLot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constant/constant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="44" lean-forward="true" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
         </state>
       </provider>
     </entry>

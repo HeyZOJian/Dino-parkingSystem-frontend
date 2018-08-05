@@ -1,11 +1,11 @@
 import axios from 'axios';
 import * as url from '../constant/constant'
+import {message} from 'antd';
 
 const ResourceAPi = {
     apiUrl: url.URL,
     getAllEmployees(successCallBack) {
         const token = localStorage.getItem("token")
-        console.log("13232121" + token)
         axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/users`)
@@ -21,7 +21,8 @@ const ResourceAPi = {
         axios.
             post(`${this.apiUrl}/users`, employee)
             .then(function (response) {
-                successCallBack(response.status);
+                console.log(response.data)
+                successCallBack(response.status,response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -144,6 +145,7 @@ const ResourceAPi = {
                 console.log(error);
             })
     },
+    
     changeParkingLotStatus(parkingLotId, parkingLotStatus, successCallBack) {
         axios({
             method: 'patch',
@@ -169,6 +171,22 @@ const ResourceAPi = {
                 console.log(error);
             });
 
+        },
+
+    manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
+        axios
+            .put(`${this.apiUrl}/parkingBoys/${id}/parkingLots`, {
+                operation: operation,
+                parkingLots: parkingLotsIds
+            })
+            .then(function (response) {
+                successCallBack(response.data);
+                message.success('处理成功！');
+            })
+            .catch(function (error) {
+                console.log(error);
+                message.error('处理失败！');
+            });
     }
 }
 
