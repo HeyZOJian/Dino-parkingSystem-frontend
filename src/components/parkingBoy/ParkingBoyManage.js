@@ -40,6 +40,11 @@ export default class ParkingBoyManage extends React.Component {
     ];
 
     updateParkingBoyStatus(id, parkingBoyStatus) {
+        if (parkingBoyStatus) {
+            this.setState({
+                expandedRowKeys: [],
+            })
+        }
         parkingBoyStatus = parkingBoyStatus ? false : true;
         this.props.updateParkingBoyStatus(id, parkingBoyStatus);
     }
@@ -116,7 +121,7 @@ export default class ParkingBoyManage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getAllParkingBoys();
+        // this.props.getAllParkingBoys();
         this.props.getNoManagedParkingLots();
     }
 
@@ -165,7 +170,7 @@ export default class ParkingBoyManage extends React.Component {
                     }
                     expandedRowKeys={this.state.expandedRowKeys}
                     dataSource={parkingBoys}
-                    onExpand={(expanded, record) => this.onExpand(expanded, record)}
+                    onExpand={(expanded, record) => {if (record.status) this.onExpand(expanded, record);}}
                 />
             </Content>
             

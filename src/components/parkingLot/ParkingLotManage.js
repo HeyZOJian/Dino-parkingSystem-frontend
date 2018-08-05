@@ -91,9 +91,9 @@ export default class ParkingLotManage extends React.Component {
         
     }
 
-    componentDidMount() {
-        this.props.getAllParkingLots();
-    }
+    // componentDidMount() {
+    //     this.props.getAllParkingLots();
+    // }
     
     render() {
         console.log(this.props)

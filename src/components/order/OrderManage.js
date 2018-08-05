@@ -42,9 +42,9 @@ export default class OrderManage extends React.Component {
         this.setState({ visible: false });
     }
 
-    componentDidMount() {
-        this.props.getAllOrders();
-    }
+    // componentDidMount() {
+    //     this.props.getAllOrders();
+    // }
     render() {
         const {orders} = this.props;
         return (
