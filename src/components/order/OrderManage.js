@@ -23,7 +23,7 @@ export default class OrderManage extends React.Component {
         { title: '状态', dataIndex: 'status', key: 'status' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
-                <a onClick={() => this.dispatchOrder(record.id)}>{record.status === 'noRob' ? '指派' : ''}</a>
+                <a onClick={() => this.dispatchOrder(record.id)}>{record.status === '无人处理' ? '指派' : ''}</a>
             </span>
         ),
     },
