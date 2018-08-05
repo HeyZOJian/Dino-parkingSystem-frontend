@@ -117,7 +117,6 @@ const AddParkingLot = Form.create()(
             <Modal
                 visible={this.props.visible}
                 title="创建停车场"
-                okText="Create"
                 onCancel={this.props.onCancel}
                 onOk={this.handleSubmit}
                 

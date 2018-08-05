@@ -54,12 +54,13 @@ const ResourceAPi = {
                 message.success('操作成功！');
             })
             .catch(function (error) {
-                successCallBack();
                 message.error(`操作失败！ 原因：${error.response.status, error.response.data.cause}`);
             })
     },
 
     getAllParkingLots(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/parkingLots`)
             .then(function (response) {
@@ -71,6 +72,8 @@ const ResourceAPi = {
     },
 
     getAllOrders(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/orders`)
             .then(function (response) {
@@ -82,6 +85,8 @@ const ResourceAPi = {
     },
 
     getAllParkingBoys(successCallBack) {
+        const token = localStorage.getItem("token")
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/parkingBoys`)
             .then(function (response) {

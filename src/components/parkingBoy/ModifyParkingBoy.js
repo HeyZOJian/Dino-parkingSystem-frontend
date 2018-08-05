@@ -1,31 +1,32 @@
-import { Form, Input, Select, Button, AutoComplete, Modal, Alert } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal, Alert } from 'antd';
 import React from 'react';
-import ResourceAPI from '../../api/ResourceAPI';
+import ResourceAPi from '../../api/ResourceAPI';
 import { Link } from 'react-router-dom'
 
 const FormItem = Form.Item;
-// const Option = Select.Option;
+const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-const ModifyParkingLot = Form.create()(
+const ModifyParkingBoy = Form.create()(
     class extends React.Component {
         state = {
             confirmDirty: false,
             autoCompleteResult: [],
             visible: false,
             context: '',
+            workStatus: '',
         };
 
         getStatusCode(statusCode) {
-            if (statusCode === 200) {
+            if (statusCode === 204) {
                 this.setState({
                     visible: true,
-                    context: <Alert message="修改成功" type="success" />,
+                    context: <Alert message="Success Text" type="success" />,
                 })
             } else {
                 this.setState({
                     visible: true,
-                    context: <Alert message="修改失败" type="error" />,
+                    context: <Alert message="Error Text" type="error" />,
                 })
             }
         }
@@ -33,9 +34,9 @@ const ModifyParkingLot = Form.create()(
             e.preventDefault();
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if (!err) {
-                    console.log('Received values of form: ', values);
-                    console.log(this.props.parkingLotId);
-                    ResourceAPI.modifyParkingLotInfo({ id: this.props.parkingLotId, ...values }, (statusCode) => this.getStatusCode(statusCode));
+                    console.log('Received values of form: ', {...values, workStatus: this.state.workStatus});
+                    console.log(this.props.parkingBoyId);
+                    ResourceAPi.modifyEmployeeInfo({ id: this.props.parkingBoyId, ...values, workStatus: this.state.workStatus }, (statusCode) => this.getStatusCode(statusCode));
                 }
             });
         }
@@ -43,6 +44,23 @@ const ModifyParkingLot = Form.create()(
         handleConfirmBlur = (e) => {
             const value = e.target.value;
             this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+        }
+
+        compareToFirstPassword = (rule, value, callback) => {
+            const form = this.props.form;
+            if (value && value !== form.getFieldValue('password')) {
+                callback('Two passwords that you enter is inconsistent!');
+            } else {
+                callback();
+            }
+        }
+
+        validateToNextPassword = (rule, value, callback) => {
+            const form = this.props.form;
+            if (value && this.state.confirmDirty) {
+                form.validateFields(['confirm'], { force: true });
+            }
+            callback();
         }
 
         handleWebsiteChange = (value) => {
@@ -61,10 +79,16 @@ const ModifyParkingLot = Form.create()(
         }
 
         handleOk = () => {
-            this.props.getAllParkingLots();
+            this.props.getAllParkingBoys();
             this.setState({ visible: false });
             this.props.onCancel();
             this.props.form.resetFields();
+        }
+
+        handleChange (value) {
+            this.setState({
+                workStatus: value
+            })
         }
 
         render() {
@@ -81,14 +105,27 @@ const ModifyParkingLot = Form.create()(
                     sm: { span: 16 },
                 },
             };
+            const tailFormItemLayout = {
+                wrapperCol: {
+                    xs: {
+                        span: 24,
+                        offset: 0,
+                    },
+                    sm: {
+                        span: 16,
+                        offset: 8,
+                    },
+                },
+            };
 
             const websiteOptions = autoCompleteResult.map(website => (
                 <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
             ));
+            console.log(this.props.workStatus)
             return (
                 <Modal
                     visible={this.props.visible}
-                    title="修改停车场信息"
+                    title="修改停车员信息"
                     onCancel={this.props.onCancel}
                     onOk={this.handleSubmit}
 
@@ -100,7 +137,7 @@ const ModifyParkingLot = Form.create()(
                             onOk={this.handleOk}
                             onCancel={this.handleCancel}
                             footer={[
-                                <Link to='/App/ParkingLotManage'>
+                                <Link to='/App/ParkingBoyManage'>
                                     <Button key="submit" type="primary" onClick={this.handleOk}>
                                         确定
                             </Button>
@@ -111,27 +148,36 @@ const ModifyParkingLot = Form.create()(
                         </Modal>
                         <FormItem
                             {...formItemLayout}
-                            label="停车场名称"
+                            label="姓名"
                         >
-                            {getFieldDecorator('name', {
+                            {getFieldDecorator('nickname', {
                                 rules: [{
-                                    message: '请输入停车场名称!',
-                                }],
-                            })(
-                                <Input/>
-                            )}
-                        </FormItem>
-                        <FormItem
-                            {...formItemLayout}
-                            label="停车场车位数"
-                        >
-                            {getFieldDecorator('size', {
-                                rules: [{
-                                    message: '请输入停车场车位数量!',
+                                    message: 'Please input your E-mail!',
                                 }],
                             })(
                                 <Input />
                             )}
+                        </FormItem>
+                        <FormItem
+                            {...formItemLayout}
+                            label="电话号码"
+                        >
+                            {getFieldDecorator('phone', {
+                                rules: [{ message: '请输入电话号码!' }],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+                        <FormItem
+                            {...formItemLayout}
+                            label="状态"
+                        >
+                                <Select style={{ width: 315 }} onChange={(value) => this.handleChange(value)}>
+                                    <Option disabled={this.props.workStatus === '上班'} value="onduty">上班</Option>
+                                    <Option disabled={this.props.workStatus === '下班'} value="offduty">下班</Option>
+                                    <Option disabled={this.props.workStatus === '迟到'} value="late">迟到</Option>
+                                    <Option disabled={this.props.workStatus === '请假'} value="leave">请假</Option>
+                                </Select>
                         </FormItem>
                     </Form>
                 </Modal>
@@ -141,4 +187,4 @@ const ModifyParkingLot = Form.create()(
 )
 
 
-export default ModifyParkingLot;
+export default ModifyParkingBoy;

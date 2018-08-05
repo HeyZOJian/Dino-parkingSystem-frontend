@@ -17,11 +17,11 @@ export default class OrderManage extends React.Component {
     };
 
     columns = [
-        { title: 'ID', dataIndex: 'id', key: 'id'},
-        {title: '车牌号', dataIndex: 'plateNumber', key: 'platenumber'},
-        { title: '类型', dataIndex: 'type', key: 'nickname' },
-        { title: '状态', dataIndex: 'status', key: 'status' },
-        { title: '操作', key: 'operation', render: (text, record) => (
+        { title: 'ID', dataIndex: 'id', key: 'id', align: 'center'},
+        {title: '车牌号', dataIndex: 'plateNumber', key: 'platenumber', align: 'center'},
+        { title: '类型', dataIndex: 'type', key: 'nickname', align: 'center' },
+        { title: '状态', dataIndex: 'status', key: 'status', align: 'center' },
+        { title: '操作', key: 'operation', align: 'center', render: (text, record) => (
             <span>
                 <a onClick={() => this.dispatchOrder(record.id)}>{record.status === '无人处理' ? '指派' : ''}</a>
             </span>
@@ -87,6 +87,8 @@ export default class OrderManage extends React.Component {
                 />
                 </span>
                 <Table style={{clear:"both"}}
+                    bordered
+                    rowKey='id'
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={orders}

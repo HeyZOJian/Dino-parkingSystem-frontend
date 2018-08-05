@@ -116,9 +116,9 @@ const AddEmployee = Form.create()(
         ));
         return (
             <Modal
+                width={350}
                 visible={this.props.visible}
-                title="Create a new collection"
-                okText="Create"
+                title='新增员工'
                 onCancel={this.props.onCancel}
                 onOk={this.handleSubmit}
                 
