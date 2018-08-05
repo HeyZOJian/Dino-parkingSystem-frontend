@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ParkingLotManage from "../components/parkingLot/ParkingLotManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllParkingLots,getSearchParkingLots} from '../actions'
+import {getAllParkingLots,getSearchParkingLots, updateParkingLotStatus} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state.parkinglots)
@@ -18,6 +18,9 @@ const mapStateToProps = (state, ownProps) => {
         },
         getSearchEmployees: (optionValue,value) =>{
             ResourceAPi.searchParkingLots(optionValue,value,parkingLots => dispatch(getSearchParkingLots(parkingLots)))
+        },
+        updateParkingLotStatus: (id) => {
+            dispatch(updateParkingLotStatus(id));
         }
     }
   };

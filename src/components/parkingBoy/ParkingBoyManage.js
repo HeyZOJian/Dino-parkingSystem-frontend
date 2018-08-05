@@ -32,12 +32,17 @@ export default class ParkingBoyManage extends React.Component {
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
+                <a onClick={() => this.updateParkingBoyStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
     ];
+
+    updateParkingBoyStatus(id, parkingBoyStatus) {
+        parkingBoyStatus = parkingBoyStatus ? false : true;
+        this.props.updateParkingBoyStatus(id, parkingBoyStatus);
+    }
 
     filterOption = (inputValue, option) => {
         return option.description.indexOf(inputValue) > -1;
@@ -50,7 +55,7 @@ export default class ParkingBoyManage extends React.Component {
     handleChange = (targetKeys, direction, moveKeys) => {
         const self = this;
         confirm({
-            title: '你确定要执行吗？',
+            title: '你确定要执行该操作吗？',
             onOk() {
                 console.log(targetKeys, direction, moveKeys);
                 self.props.manageParkingBoysParkingLots(self.state.recordId, direction, moveKeys,
@@ -146,6 +151,7 @@ export default class ParkingBoyManage extends React.Component {
                     expandedRowRender={record => 
                         <Spin spinning={this.state.loading}>
                             <Transfer
+                                disabled={record.status === false}
                                 rowKey={record => record.id}
                                 titles={['可选停车场', '管理的停车场']}
                                 dataSource={[...this.props.parkingLots, ...this.props.managedParkingLots]}

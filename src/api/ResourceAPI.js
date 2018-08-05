@@ -40,7 +40,7 @@ const ResourceAPi = {
             })
     },
 
-    changeEmployeeStatus(employeeId, employeeStatus, successCallBack) {
+    updateEmployeeStatus(employeeId, employeeStatus, successCallBack) {
         axios({
             method: 'patch',
             url: `${this.apiUrl}/users/${employeeId}`,
@@ -50,10 +50,12 @@ const ResourceAPi = {
             }
         })
             .then(function (response) {
-                successCallBack(response.status);
+                successCallBack();
+                message.success('操作成功！');
             })
             .catch(function (error) {
-                successCallBack(error.response.status, error.response.data.cause);
+                successCallBack();
+                message.error(`操作失败！ 原因：${error.response.status, error.response.data.cause}`);
             })
     },
 
@@ -153,7 +155,6 @@ const ResourceAPi = {
             method: 'patch',
             url: `${this.apiUrl}/parkingLots/${parkingLotId}`,
             headers: { 'content-type': 'application/json' },
-            data: parkingLotStatus
         })
             .then(function (response) {
                 successCallBack(response.status);
@@ -207,13 +208,13 @@ const ResourceAPi = {
             })
             .then(function (response) {
                 successCallBack(response.data);
-                message.success('处理成功！');
+                message.success('操作成功！');
             })
             .catch(function (error) {
                 console.log(error);
-                message.error('处理失败！');
+                message.error('操作失败！');
             });
-    }
+    },
 }
 
 export default ResourceAPi;

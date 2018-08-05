@@ -36,16 +36,16 @@ export default class EmployeeManage extends React.Component {
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
+                <a onClick={() => this.updateEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
       ];
 
-    changeEmployeeStatus = (employeeId, employeeStatus) => {
+      updateEmployeeStatus = (employeeId, employeeStatus) => {
         employeeStatus = employeeStatus ? false : true;
-        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode, cause) => this.getStatusCode(statusCode, cause, employeeId))
+        this.props.updateEmployeeStatus(employeeId, employeeStatus);
     }
 
     getStatusCode(statusCode, cause, id) {
@@ -168,6 +168,7 @@ export default class EmployeeManage extends React.Component {
                 />
                 </span>
                 <Table
+                    rowKey='id'
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     dataSource={employees}

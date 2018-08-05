@@ -23,6 +23,14 @@ export default (state = [], action) => {
         }
       return parkingBoys;
       }
+      case 'UPDATE_PARKINGBOY_STATUS': {
+        return state.map(parkingBoy => {
+          if (parkingBoy.id === action.id) {
+            parkingBoy.status = parkingBoy.status ? false : true;
+          }
+          return parkingBoy;
+        })
+      }
       default:
         return state;
     }
