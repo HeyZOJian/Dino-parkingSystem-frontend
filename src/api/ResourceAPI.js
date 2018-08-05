@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const ResourceAPi = {
-    apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
-    // apiUrl:'http://localhost:8081',
+    // apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
+    apiUrl:'http://localhost:8081',
     getAllEmployees(successCallBack) {
         const token = localStorage.getItem("token")
-        console.log("13232121"+token)
-    axios.defaults.headers.common['Authorization'] = token;
+        console.log("13232121" + token)
+        axios.defaults.headers.common['Authorization'] = token;
         axios
             .get(`${this.apiUrl}/users`)
             .then(function (response) {
@@ -22,18 +22,18 @@ const ResourceAPi = {
             post(`${this.apiUrl}/users`, employee)
             .then(function (response) {
                 successCallBack(response.status);
-            }) 
+            })
             .catch(function (error) {
                 console.log(error);
             })
     },
-    
+
     modifyEmployeeInfo(employee, successCallBack) {
         axios.
             put(`${this.apiUrl}/users/${employee.id}`, employee)
             .then(function (response) {
                 successCallBack(response.status);
-            }) 
+            })
             .catch(function (error) {
                 console.log(error);
             })
@@ -90,8 +90,8 @@ const ResourceAPi = {
     dispatchOrder(orderId, parkingBoyId, successCallBack) {
         axios
             .put(`${this.apiUrl}/orders/${orderId}`, {
-                "status":"waitPark",
-                "parkingBoyId":parkingBoyId
+                "status": "waitPark",
+                "parkingBoyId": parkingBoyId
             })
             .then(function (response) {
                 successCallBack(response.status);
@@ -121,6 +121,42 @@ const ResourceAPi = {
             .catch(function (error) {
                 console.log(error);
             });
+    },
+
+    addParkingLot(parkingLot, successCallBack) {
+        axios.
+            post(`${this.apiUrl}/parkingLots`, parkingLot)
+            .then(function (response) {
+                successCallBack(response.status);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    },
+
+    modifyParkingLotInfo(parkingLot, successCallBack) {
+        axios.
+            put(`${this.apiUrl}/parkingLots/${parkingLot.id}`, parkingLot)
+            .then(function (response) {
+                successCallBack(response.status);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    },
+    changeParkingLotStatus(parkingLotId, parkingLotStatus, successCallBack) {
+        axios({
+            method: 'patch',
+            url: `${this.apiUrl}/parkingLots/${parkingLotId}`,
+            headers: { 'content-type': 'application/json' },
+            data: parkingLotStatus
+        })
+            .then(function (response) {
+                successCallBack(response.status);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 }
 

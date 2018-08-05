@@ -59,8 +59,8 @@ class NormalLoginForm extends React.Component {
       .validateFields((err, values) => {
         if (!err) {
           //  console.log('Received values of form: ', values);
-          axios.post("https://dino-parking-system-backend.herokuapp.com/login", {
-            //  axios.post("http://localhost:8081/login", {
+          // axios.post("https://dino-parking-system-backend.herokuapp.com/login", {
+             axios.post("http://localhost:8081/login", {
             "username": values.userName,
             "password": values.password
           }).then(function (response) {
