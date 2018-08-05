@@ -12,7 +12,12 @@ export default (state = [], action) => {
             console.log(action.parkingLots);
             return action.parkingLots;
         }
-
+        case 'UPDATE_MANAGED_PARKINGLOTS': {
+            console.log(state)
+            return action.direction === 'right' ? 
+            state.concat(action.parkingLots) : 
+            state.filter(parkingLot => action.parkingLotsIds.every(id => id != parkingLot.id))
+        }
         default:
             return state;
     }

@@ -1,5 +1,9 @@
 import axios from 'axios';
+<<<<<<< HEAD
 import * as url from '../constant/constant'
+=======
+import {message} from 'antd';
+>>>>>>> dispatch_parkinglots
 
 const ResourceAPi = {
     apiUrl: url.URL,
@@ -157,6 +161,20 @@ const ResourceAPi = {
             .catch(function (error) {
                 console.log(error);
             })
+    manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
+        axios
+            .put(`${this.apiUrl}/parkingBoys/${id}/parkingLots`, {
+                operation: operation,
+                parkingLots: parkingLotsIds
+            })
+            .then(function (response) {
+                successCallBack(response.data);
+                message.success('处理成功！');
+            })
+            .catch(function (error) {
+                console.log(error);
+                message.error('处理失败！');
+            });
     }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete,Transfer } from 'antd';
+import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete,Transfer, Spin } from 'antd';
 import {Link} from 'react-router-dom'
 import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from '../employee/AddEmployee';
@@ -9,6 +9,7 @@ import axios from 'axios'
 const { Content } = Layout;
 const {Search} = Input;
 const {Option} = Select;
+const {confirm} = Modal;
 
 
 export default class ParkingBoyManage extends React.Component {
@@ -17,7 +18,9 @@ export default class ParkingBoyManage extends React.Component {
         orderId: undefined,
         mockData: [],
         targetKeys: [],
-        expandedRowKeys: '',
+        expandedRowKeys: [],
+        recordId:'',
+        loading: false
     };
 
     columns = [
@@ -44,9 +47,21 @@ export default class ParkingBoyManage extends React.Component {
         return response.data;
     }
 
-    handleChange = (targetKeys) => {
-        this.setState({ targetKeys });
-      }
+    handleChange = (targetKeys, direction, moveKeys) => {
+        const self = this;
+        confirm({
+            title: '你确定要执行吗？',
+            onOk() {
+                console.log(targetKeys, direction, moveKeys);
+                self.props.manageParkingBoysParkingLots(self.state.recordId, direction, moveKeys,
+                    direction === 'right' ?
+                        self.props.parkingLots.filter(parkingLot => moveKeys.some(id => id === parkingLot.id)) :
+                        self.props.managedParkingLots.filter(parkingLot => moveKeys.some(id => id === parkingLot.id))
+                )
+            },
+            onCancel() {},
+        });
+    }
     
     
       getMock = () => {
@@ -68,13 +83,22 @@ export default class ParkingBoyManage extends React.Component {
       }
 
     onExpand(expanded, record) {
-        if (expanded) {
+        if (expanded && record.id != this.state.recordId) {
+            this.setState({
+                loading:true
+            })
             this.props.getParkingLotsByParkingBoyId(record.id, () => this.setState({
-                expandedRowKeys: [record.id]
+                recordId: record.id,
+                expandedRowKeys: [record.id],
+                loading: false
             }));
+        } else if (expanded){
+            this.setState({
+                expandedRowKeys: [record.id]
+            })
         } else {
             this.setState({
-                expandedRowKeys: ''
+                expandedRowKeys: []
             })
         }
     }
@@ -106,16 +130,18 @@ export default class ParkingBoyManage extends React.Component {
                     rowKey='id'
                     columns={this.columns}
                     expandedRowRender={record => 
-                        <Transfer
-                            rowKey={record => record.id}
-                            titles={['可选停车场', '管理的停车场']}
-                            dataSource={[...this.props.parkingLots, ...this.props.managedParkingLots]}
-                            showSearch
-                            filterOption={this.filterOption}
-                            targetKeys={this.props.managedParkingLots.map(parkingLot => parkingLot.id)}
-                            onChange={this.handleChange}
-                            render={item => item.name}
-                        />
+                        <Spin spinning={this.state.loading}>
+                            <Transfer
+                                rowKey={record => record.id}
+                                titles={['可选停车场', '管理的停车场']}
+                                dataSource={[...this.props.parkingLots, ...this.props.managedParkingLots]}
+                                showSearch
+                                filterOption={this.filterOption}
+                                targetKeys={this.props.managedParkingLots.map(parkingLot => parkingLot.id)}
+                                onChange={this.handleChange}
+                                render={item => item.name}
+                            />
+                        </Spin>
                     }
                     expandedRowKeys={this.state.expandedRowKeys}
                     dataSource={parkingBoys}
