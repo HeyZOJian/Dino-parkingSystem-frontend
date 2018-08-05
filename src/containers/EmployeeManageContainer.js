@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import EmployeeManage from "../components/employee/EmployeeManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllEmployees} from '../actions';
+import {getAllEmployees, updateEmployeeStatus} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -13,6 +13,9 @@ const mapStateToProps = (state, ownProps) => {
     return {
         getAllEmployees: () => {
             ResourceAPi.getAllEmployees(employees => dispatch(getAllEmployees(employees)));
+        },
+        updateEmployeeStatus: (id) => {
+            dispatch(updateEmployeeStatus(id));
         }
     }
   };

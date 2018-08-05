@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete, } from 'antd';
+import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete, message } from 'antd';
 import {Link} from 'react-router-dom'
 import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from './AddEmployee';
@@ -44,20 +44,15 @@ export default class EmployeeManage extends React.Component {
 
     changeEmployeeStatus = (employeeId, employeeStatus) => {
         employeeStatus = employeeStatus ? false : true;
-        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode) => this.getStatusCode(statusCode))
+        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode, cause) => this.getStatusCode(statusCode, cause, employeeId))
     }
 
-    getStatusCode(statusCode) {
+    getStatusCode(statusCode, cause, id) {
         if (statusCode === 204) {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="Success Text" type="success" />,
-            })
+            this.props.updateEmployeeStatus(id);
+            message.success('操作成功！');
         } else {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="Error Text" type="error" />,
-            })
+            message.error(`操作失败！原因：${cause}`);
         }
     }
 
@@ -65,9 +60,6 @@ export default class EmployeeManage extends React.Component {
         this.setState({ addVisible: true });
     }
 
-    handleCancel = () => {
-        this.setState({ addVisible: false });
-    }
 
     handleCreate = () => {
         const form = this.formRef.props.form;
@@ -96,10 +88,6 @@ export default class EmployeeManage extends React.Component {
         this.formRef = formRef;
     }
 
-    handleOk = () => {
-        this.props.getAllEmployees();
-          this.setState({ statusVisible: false });
-      }
 
     componentDidMount() {
         this.props.getAllEmployees();
@@ -109,21 +97,6 @@ export default class EmployeeManage extends React.Component {
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
-                <Modal
-                    visible={this.state.statusVisible}
-                    title="Title"
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                    footer={[
-                        <Link to='/App/EmployeeManage'>
-                            <Button key="submit" type="primary" onClick={this.handleOk}>
-                                确定
-                            </Button>
-                        </Link>,
-                    ]}
-                >
-                    {this.state.context}
-                </Modal>
                 <ModifyEmployee
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}

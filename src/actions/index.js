@@ -9,3 +9,4 @@ export const getNoManagedParkingLots = (parkingLots) => ({type: 'GET_NO_MANAGED_
 export const getParkingLotsByParkingBoyId = (parkingLots) => ({type: 'GET_PARKINGLOTS_BY_PARKINGBOY_ID', parkingLots})
 export const updateManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
 export const updateNoManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_NO_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
+export const updateEmployeeStatus = (id) => ({type: 'UPDATE_EMPLOYEE_STATUS', id})
