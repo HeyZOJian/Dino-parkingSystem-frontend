@@ -35,7 +35,7 @@ export default (state = [], action) => {
       case types.STATUS_WAITPARK:return "正在停车";
       case types.STATUS_PARKED:return "停车完成";
       case types.STATUS_WAITCUSTOMER:return "等待顾客取车";
-      case types.STATUS_WAITUNPARK:return "顾客等待取车";
+      case types.STATUS_WAITUNPARK:return "正在取车";
       case types.STATUS_FINISH:return "完成";
     }
   }
