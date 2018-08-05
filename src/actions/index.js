@@ -7,3 +7,5 @@ export const getAllParkingBoys = (parkingBoys) => ({type: 'GET_ALL_PARKINGBOYS',
 export const dispatchOrderSuccess = (id) => ({type: 'DISPATCH_ORDER_SUCCESS', id})
 export const getNoManagedParkingLots = (parkingLots) => ({type: 'GET_NO_MANAGED_PARKINGLOTS', parkingLots})
 export const getParkingLotsByParkingBoyId = (parkingLots) => ({type: 'GET_PARKINGLOTS_BY_PARKINGBOY_ID', parkingLots})
+export const updateManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})
+export const updateNoManagedParkingLots = (direction, parkingLotsIds, parkingLots) => ({type: 'UPDATE_NO_MANAGED_PARKINGLOTS', direction, parkingLotsIds, parkingLots})

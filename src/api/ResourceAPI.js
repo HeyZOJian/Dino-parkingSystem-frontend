@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {message} from 'antd';
 
 const ResourceAPi = {
     apiUrl: 'https://dino-parking-system-backend.herokuapp.com',
@@ -120,6 +121,22 @@ const ResourceAPi = {
             })
             .catch(function (error) {
                 console.log(error);
+            });
+    },
+
+    manageParkingBoysParkingLots(id, operation, parkingLotsIds, successCallBack) {
+        axios
+            .put(`${this.apiUrl}/parkingBoys/${id}/parkingLots`, {
+                operation: operation,
+                parkingLots: parkingLotsIds
+            })
+            .then(function (response) {
+                successCallBack(response.data);
+                message.success('处理成功！');
+            })
+            .catch(function (error) {
+                console.log(error);
+                message.error('处理失败！');
             });
     }
 }
