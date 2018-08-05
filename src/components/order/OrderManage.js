@@ -21,6 +21,7 @@ export default class OrderManage extends React.Component {
         {title: '车牌号', dataIndex: 'plateNumber', key: 'platenumber', align: 'center'},
         { title: '类型', dataIndex: 'type', key: 'nickname', align: 'center' },
         { title: '状态', dataIndex: 'status', key: 'status', align: 'center' },
+        { title: '时间', dataIndex: 'parkDate', key: 'parkDate', align: 'center' },
         { title: '操作', key: 'operation', align: 'center', render: (text, record) => (
             <span>
                 <a onClick={() => this.dispatchOrder(record.id)}>{record.status === '无人处理' ? '指派' : ''}</a>

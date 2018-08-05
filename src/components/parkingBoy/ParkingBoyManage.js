@@ -155,7 +155,7 @@ export default class ParkingBoyManage extends React.Component {
                     parkingBoyId={this.state.parkingBoyId}
                     workStatus={this.state.workStatus}
                 />
-                <span style={{float:'right'}}>
+                <span style={{float:'right', marginBottom: 10}}>
                 <Select style={{width: 100}} onChange={this.handleOptionvalue}>
                     {/* <Option value = 'id'>id</Option> */}
                     <Option value = 'nickname'>姓名</Option>
